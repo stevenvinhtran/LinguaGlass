@@ -8,17 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		5D357B162E5F575B000A59EA /* LinguaGlassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */; };
-		5D357B182E5F575B000A59EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B172E5F575B000A59EA /* ContentView.swift */; };
+		5D357B182E5F575B000A59EA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B172E5F575B000A59EA /* MainView.swift */; };
 		5D357B1A2E5F575E000A59EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B192E5F575E000A59EA /* Assets.xcassets */; };
 		5D357B1D2E5F575E000A59EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B1C2E5F575E000A59EA /* Preview Assets.xcassets */; };
+		5D357B272E5F6737000A59EA /* WebPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B262E5F6737000A59EA /* WebPage.swift */; };
+		5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B282E5F675E000A59EA /* WebBrowserState.swift */; };
+		5D357B2B2E5F6795000A59EA /* WebBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B2A2E5F6795000A59EA /* WebBrowserViewModel.swift */; };
+		5D357B2D2E5F67DF000A59EA /* WebPersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B2C2E5F67DF000A59EA /* WebPersistanceService.swift */; };
+		5D357B2F2E5F6830000A59EA /* WebBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */; };
+		5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B3D2E5F8961000A59EA /* HeaderView.swift */; };
+		5D357B402E5F8981000A59EA /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B3F2E5F8981000A59EA /* HeaderViewModel.swift */; };
+		5D357B422E5F9ABC000A59EA /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B412E5F9ABC000A59EA /* SettingsModels.swift */; };
+		5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */; };
+		5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B492E5FBB6B000A59EA /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D357B122E5F575B000A59EA /* LinguaGlass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinguaGlass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinguaGlassApp.swift; sourceTree = "<group>"; };
-		5D357B172E5F575B000A59EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5D357B172E5F575B000A59EA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5D357B192E5F575E000A59EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D357B1C2E5F575E000A59EA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5D357B262E5F6737000A59EA /* WebPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPage.swift; sourceTree = "<group>"; };
+		5D357B282E5F675E000A59EA /* WebBrowserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowserState.swift; sourceTree = "<group>"; };
+		5D357B2A2E5F6795000A59EA /* WebBrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowserViewModel.swift; sourceTree = "<group>"; };
+		5D357B2C2E5F67DF000A59EA /* WebPersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPersistanceService.swift; sourceTree = "<group>"; };
+		5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowserView.swift; sourceTree = "<group>"; };
+		5D357B3D2E5F8961000A59EA /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		5D357B3F2E5F8981000A59EA /* HeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
+		5D357B412E5F9ABC000A59EA /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		5D357B492E5FBB6B000A59EA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +72,9 @@
 			isa = PBXGroup;
 			children = (
 				5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */,
-				5D357B172E5F575B000A59EA /* ContentView.swift */,
+				5D357B242E5F63EB000A59EA /* Model */,
+				5D357B232E5F63C5000A59EA /* View */,
+				5D357B252E5F645D000A59EA /* ViewModel */,
 				5D357B192E5F575E000A59EA /* Assets.xcassets */,
 				5D357B1B2E5F575E000A59EA /* Preview Content */,
 			);
@@ -65,6 +87,46 @@
 				5D357B1C2E5F575E000A59EA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5D357B232E5F63C5000A59EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B172E5F575B000A59EA /* MainView.swift */,
+				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
+				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
+				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D357B242E5F63EB000A59EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B322E5F7EFD000A59EA /* WebBrowser */,
+				5D357B412E5F9ABC000A59EA /* SettingsModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5D357B252E5F645D000A59EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B2A2E5F6795000A59EA /* WebBrowserViewModel.swift */,
+				5D357B3F2E5F8981000A59EA /* HeaderViewModel.swift */,
+				5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D357B322E5F7EFD000A59EA /* WebBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B262E5F6737000A59EA /* WebPage.swift */,
+				5D357B282E5F675E000A59EA /* WebBrowserState.swift */,
+				5D357B2C2E5F67DF000A59EA /* WebPersistanceService.swift */,
+			);
+			path = WebBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +199,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D357B182E5F575B000A59EA /* ContentView.swift in Sources */,
+				5D357B182E5F575B000A59EA /* MainView.swift in Sources */,
+				5D357B2B2E5F6795000A59EA /* WebBrowserViewModel.swift in Sources */,
+				5D357B2D2E5F67DF000A59EA /* WebPersistanceService.swift in Sources */,
 				5D357B162E5F575B000A59EA /* LinguaGlassApp.swift in Sources */,
+				5D357B422E5F9ABC000A59EA /* SettingsModels.swift in Sources */,
+				5D357B272E5F6737000A59EA /* WebPage.swift in Sources */,
+				5D357B402E5F8981000A59EA /* HeaderViewModel.swift in Sources */,
+				5D357B2F2E5F6830000A59EA /* WebBrowserView.swift in Sources */,
+				5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */,
+				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
+				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
+				5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
