@@ -11,17 +11,12 @@ import WebKit
 struct WebBrowserView: View {
     @StateObject var viewModel: WebBrowserViewModel
     @ObservedObject var headerViewModel: HeaderViewModel
-    @State private var showProgress = false
+    @State var showProgress: Bool
     @State private var ocrCaptureService = OCRCaptureService()
     
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                // Browser controls
-                if !headerViewModel.isSearchBarHidden {
-                    WebBrowserControlsView(viewModel: viewModel, showProgress: $showProgress)
-                }
-                
                 // WebView content
                 WebViewRepresentable(viewModel: viewModel)
                     .edgesIgnoringSafeArea(.bottom)
@@ -31,15 +26,13 @@ struct WebBrowserView: View {
             OCRGestureHandler(headerViewModel: headerViewModel) { selectionRect in
                 captureOCRImage(from: selectionRect)
             }
-            .allowsHitTesting(headerViewModel.isOCRModeActive) // Only receive touches in OCR mode
+            .allowsHitTesting(headerViewModel.isOCRModeActive)
             
             // OCR Visual Overlay
             OCRSelectionOverlayView(selectionRect: headerViewModel.getSelectionRect())
         }
         .onChange(of: viewModel.state.isLoading) { isLoading in
-            withAnimation {
-                showProgress = isLoading && viewModel.state.estimatedProgress < 1.0
-            }
+            // You might want to handle progress changes here if needed
         }
     }
     
@@ -48,8 +41,6 @@ struct WebBrowserView: View {
             switch result {
             case .success(let text):
                 print("OCR Result: \(text)")
-                // Process the OCR text
-                
             case .failure(let error):
                 print("OCR Error: \(error.localizedDescription)")
             }

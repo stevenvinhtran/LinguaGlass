@@ -12,22 +12,29 @@ struct MainView: View {
     @StateObject private var headerViewModel = HeaderViewModel()
     @StateObject private var settingsViewModel = SettingsViewModel()
     @State private var showSettings = false
+    @State private var showProgress = false
     
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(viewModel: headerViewModel) {
-                showSettings.toggle()
-            }
+            HeaderView(
+                viewModel: headerViewModel,
+                webViewModel: webViewModel,
+                showProgress: $showProgress, 
+                onSettings: {
+                    showSettings.toggle()
+                }
+            )
             
             WebBrowserView(
                 viewModel: webViewModel,
-                headerViewModel: headerViewModel
+                headerViewModel: headerViewModel,
+                showProgress: showProgress
             )
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environmentObject(settingsViewModel)
-                .preferredColorScheme(settingsViewModel.getColorScheme()) 
+                .preferredColorScheme(settingsViewModel.getColorScheme())
         }
         .preferredColorScheme(settingsViewModel.getColorScheme())
     }
