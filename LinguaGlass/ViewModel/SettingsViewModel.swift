@@ -23,10 +23,8 @@ class SettingsViewModel: ObservableObject {
             self.settings = AppSettings()
         }
         
-        // Apply the loaded theme immediately
         applyTheme()
         
-        // Observe changes and save automatically
         $settings
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [weak self] newSettings in

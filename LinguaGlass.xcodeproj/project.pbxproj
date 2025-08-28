@@ -21,6 +21,16 @@
 		5D357B422E5F9ABC000A59EA /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B412E5F9ABC000A59EA /* SettingsModels.swift */; };
 		5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */; };
 		5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B492E5FBB6B000A59EA /* SettingsView.swift */; };
+		5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B642E5FE110000A59EA /* OCROptions.swift */; };
+		5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */; };
+		5D357B692E5FE1F5000A59EA /* OCRGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */; };
+		5D357B6B2E5FE27A000A59EA /* OCRCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B6A2E5FE27A000A59EA /* OCRCaptureService.swift */; };
+		5D357B6D2E5FE29D000A59EA /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B6C2E5FE29D000A59EA /* ImageOCR.swift */; };
+		5D357B6F2E5FE306000A59EA /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B6E2E5FE306000A59EA /* OCRService.swift */; };
+		5D357B722E5FEA76000A59EA /* Tesseract+PageSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B712E5FEA76000A59EA /* Tesseract+PageSegmentation.swift */; };
+		5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B732E5FEAAA000A59EA /* TesseractOCR.swift */; };
+		5D357B772E5FEBBF000A59EA /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 5D357B762E5FEBBF000A59EA /* SwiftyTesseract */; };
+		5D357B792E5FED87000A59EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B782E5FED86000A59EA /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +49,15 @@
 		5D357B412E5F9ABC000A59EA /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		5D357B492E5FBB6B000A59EA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5D357B642E5FE110000A59EA /* OCROptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCROptions.swift; sourceTree = "<group>"; };
+		5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRSelectionOverlayView.swift; sourceTree = "<group>"; };
+		5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRGestureHandler.swift; sourceTree = "<group>"; };
+		5D357B6A2E5FE27A000A59EA /* OCRCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRCaptureService.swift; sourceTree = "<group>"; };
+		5D357B6C2E5FE29D000A59EA /* ImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOCR.swift; sourceTree = "<group>"; };
+		5D357B6E2E5FE306000A59EA /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
+		5D357B712E5FEA76000A59EA /* Tesseract+PageSegmentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tesseract+PageSegmentation.swift"; sourceTree = "<group>"; };
+		5D357B732E5FEAAA000A59EA /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
+		5D357B782E5FED86000A59EA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D357B772E5FEBBF000A59EA /* SwiftyTesseract in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +116,8 @@
 				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
 				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
 				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
+				5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */,
+				5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -103,6 +125,7 @@
 		5D357B242E5F63EB000A59EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D357B632E5FE104000A59EA /* OCR */,
 				5D357B322E5F7EFD000A59EA /* WebBrowser */,
 				5D357B412E5F9ABC000A59EA /* SettingsModels.swift */,
 			);
@@ -129,6 +152,28 @@
 			path = WebBrowser;
 			sourceTree = "<group>";
 		};
+		5D357B632E5FE104000A59EA /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B642E5FE110000A59EA /* OCROptions.swift */,
+				5D357B6A2E5FE27A000A59EA /* OCRCaptureService.swift */,
+				5D357B6C2E5FE29D000A59EA /* ImageOCR.swift */,
+				5D357B6E2E5FE306000A59EA /* OCRService.swift */,
+				5D357B702E5FEA49000A59EA /* TesseractOCR */,
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+		5D357B702E5FEA49000A59EA /* TesseractOCR */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B782E5FED86000A59EA /* tessdata */,
+				5D357B712E5FEA76000A59EA /* Tesseract+PageSegmentation.swift */,
+				5D357B732E5FEAAA000A59EA /* TesseractOCR.swift */,
+			);
+			path = TesseractOCR;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +190,9 @@
 			dependencies = (
 			);
 			name = LinguaGlass;
+			packageProductDependencies = (
+				5D357B762E5FEBBF000A59EA /* SwiftyTesseract */,
+			);
 			productName = LinguaGlass;
 			productReference = 5D357B122E5F575B000A59EA /* LinguaGlass.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +221,9 @@
 				Base,
 			);
 			mainGroup = 5D357B092E5F575B000A59EA;
+			packageReferences = (
+				5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
+			);
 			productRefGroup = 5D357B132E5F575B000A59EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -189,6 +240,7 @@
 			files = (
 				5D357B1D2E5F575E000A59EA /* Preview Assets.xcassets in Resources */,
 				5D357B1A2E5F575E000A59EA /* Assets.xcassets in Resources */,
+				5D357B792E5FED87000A59EA /* tessdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,8 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D357B6B2E5FE27A000A59EA /* OCRCaptureService.swift in Sources */,
+				5D357B6D2E5FE29D000A59EA /* ImageOCR.swift in Sources */,
 				5D357B182E5F575B000A59EA /* MainView.swift in Sources */,
+				5D357B722E5FEA76000A59EA /* Tesseract+PageSegmentation.swift in Sources */,
 				5D357B2B2E5F6795000A59EA /* WebBrowserViewModel.swift in Sources */,
+				5D357B6F2E5FE306000A59EA /* OCRService.swift in Sources */,
 				5D357B2D2E5F67DF000A59EA /* WebPersistanceService.swift in Sources */,
 				5D357B162E5F575B000A59EA /* LinguaGlassApp.swift in Sources */,
 				5D357B422E5F9ABC000A59EA /* SettingsModels.swift in Sources */,
@@ -208,9 +264,13 @@
 				5D357B402E5F8981000A59EA /* HeaderViewModel.swift in Sources */,
 				5D357B2F2E5F6830000A59EA /* WebBrowserView.swift in Sources */,
 				5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */,
+				5D357B692E5FE1F5000A59EA /* OCRGestureHandler.swift in Sources */,
 				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
+				5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */,
+				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
 				5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */,
+				5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +476,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D357B762E5FEBBF000A59EA /* SwiftyTesseract */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
+			productName = SwiftyTesseract;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5D357B0A2E5F575B000A59EA /* Project object */;
 }

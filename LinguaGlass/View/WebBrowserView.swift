@@ -12,23 +12,46 @@ struct WebBrowserView: View {
     @StateObject var viewModel: WebBrowserViewModel
     @ObservedObject var headerViewModel: HeaderViewModel
     @State private var showProgress = false
+    @State private var ocrCaptureService = OCRCaptureService()
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Browser controls
-            if !headerViewModel.isSearchBarHidden {
-                WebBrowserControlsView(viewModel: viewModel, showProgress: $showProgress)
-                    .transition(.move(edge: .top).combined(with: .opacity))
+        ZStack {
+            VStack(spacing: 0) {
+                // Browser controls
+                if !headerViewModel.isSearchBarHidden {
+                    WebBrowserControlsView(viewModel: viewModel, showProgress: $showProgress)
+                }
+                
+                // WebView content
+                WebViewRepresentable(viewModel: viewModel)
+                    .edgesIgnoringSafeArea(.bottom)
             }
             
-            // WebView content
-            WebViewRepresentable(viewModel: viewModel)
-                .edgesIgnoringSafeArea(.bottom)
+            // OCR Gesture Handler Overlay
+            OCRGestureHandler(headerViewModel: headerViewModel) { selectionRect in
+                captureOCRImage(from: selectionRect)
+            }
+            .allowsHitTesting(headerViewModel.isOCRModeActive) // Only receive touches in OCR mode
+            
+            // OCR Visual Overlay
+            OCRSelectionOverlayView(selectionRect: headerViewModel.getSelectionRect())
         }
-        .animation(.easeInOut(duration: 0.3), value: headerViewModel.isSearchBarHidden)
         .onChange(of: viewModel.state.isLoading) { isLoading in
             withAnimation {
                 showProgress = isLoading && viewModel.state.estimatedProgress < 1.0
+            }
+        }
+    }
+    
+    private func captureOCRImage(from rect: CGRect) {
+        ocrCaptureService.captureOCRImage(from: rect, in: viewModel.webView) { result in
+            switch result {
+            case .success(let text):
+                print("OCR Result: \(text)")
+                // Process the OCR text
+                
+            case .failure(let error):
+                print("OCR Error: \(error.localizedDescription)")
             }
         }
     }
