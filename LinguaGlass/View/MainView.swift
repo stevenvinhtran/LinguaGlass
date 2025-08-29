@@ -28,7 +28,8 @@ struct MainView: View {
             WebBrowserView(
                 viewModel: webViewModel,
                 headerViewModel: headerViewModel,
-                showProgress: showProgress
+                showProgress: showProgress,
+                ocrCaptureService: OCRCaptureService(settingsViewModel: settingsViewModel)
             )
         }
         .sheet(isPresented: $showSettings) {

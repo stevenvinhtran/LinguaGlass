@@ -12,7 +12,7 @@ struct WebBrowserView: View {
     @StateObject var viewModel: WebBrowserViewModel
     @ObservedObject var headerViewModel: HeaderViewModel
     @State var showProgress: Bool
-    @State private var ocrCaptureService = OCRCaptureService()
+    @State var ocrCaptureService: OCRCaptureService
     
     var body: some View {
         ZStack {

@@ -7,12 +7,23 @@
 
 import UIKit
 import WebKit
+import Combine
 
 class OCRCaptureService {
-    private let ocrService: ImageOCR
+    private let settingsViewModel: SettingsViewModel
+    private var ocrService: ImageOCR
+    private var cancellables = Set<AnyCancellable>()
     
-    init(ocrService: ImageOCR = OCRService(settings: SettingsViewModel().settings)) {
-        self.ocrService = ocrService
+    init(settingsViewModel: SettingsViewModel) {
+        self.settingsViewModel = settingsViewModel
+        self.ocrService = OCRService(settings: settingsViewModel.settings)
+        
+        // Observe settings changes and update OCR service
+        settingsViewModel.$settings
+            .sink { [weak self] newSettings in
+                self?.ocrService = OCRService(settings: newSettings)
+            }
+            .store(in: &cancellables)
     }
     
     func captureOCRImage(from rect: CGRect, in webView: WKWebView, completion: @escaping (Result<String, Error>) -> Void) {

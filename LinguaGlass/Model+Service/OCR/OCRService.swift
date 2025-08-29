@@ -135,6 +135,7 @@ class OCRService: ImageOCR {
                 .filter { !notAllowed.contains($0) }
             cleanText = String(cleanUnicodeScalars)
         }
+        cleanText = cleanText.lowercased()
         return cleanText
     }
 }

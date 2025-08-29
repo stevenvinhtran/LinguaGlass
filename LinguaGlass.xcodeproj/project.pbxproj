@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */,
-				5D357B242E5F63EB000A59EA /* Model */,
+				5D357B242E5F63EB000A59EA /* Model+Service */,
 				5D357B232E5F63C5000A59EA /* View */,
 				5D357B252E5F645D000A59EA /* ViewModel */,
 				5D357B192E5F575E000A59EA /* Assets.xcassets */,
@@ -122,14 +122,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5D357B242E5F63EB000A59EA /* Model */ = {
+		5D357B242E5F63EB000A59EA /* Model+Service */ = {
 			isa = PBXGroup;
 			children = (
 				5D357B632E5FE104000A59EA /* OCR */,
 				5D357B322E5F7EFD000A59EA /* WebBrowser */,
 				5D357B412E5F9ABC000A59EA /* SettingsModels.swift */,
 			);
-			path = Model;
+			path = "Model+Service";
 			sourceTree = "<group>";
 		};
 		5D357B252E5F645D000A59EA /* ViewModel */ = {
