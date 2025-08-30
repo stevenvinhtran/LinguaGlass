@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "mecab-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shinjukunian/Mecab-Swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1f096492e37fc05fc2e7304091f54889974c5368"
+      }
+    },
+    {
       "identity" : "swiftytesseract",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyTesseract/SwiftyTesseract",

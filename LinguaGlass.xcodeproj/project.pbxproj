@@ -31,6 +31,20 @@
 		5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B732E5FEAAA000A59EA /* TesseractOCR.swift */; };
 		5D357B772E5FEBBF000A59EA /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 5D357B762E5FEBBF000A59EA /* SwiftyTesseract */; };
 		5D357B792E5FED87000A59EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B782E5FED86000A59EA /* tessdata */; };
+		5D393FB82E62718A00CB2FB1 /* JapaneseTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FB72E62718A00CB2FB1 /* JapaneseTokenizer.swift */; };
+		5D393FBB2E62720200CB2FB1 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FBA2E62720200CB2FB1 /* WordButton.swift */; };
+		5D393FBE2E6272E200CB2FB1 /* CharacterFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FBD2E6272E200CB2FB1 /* CharacterFilter */; };
+		5D393FC02E6272E200CB2FB1 /* IPADic in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FBF2E6272E200CB2FB1 /* IPADic */; };
+		5D393FC22E6272E200CB2FB1 /* Mecab-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FC12E6272E200CB2FB1 /* Mecab-Swift */; };
+		5D393FC42E6272E200CB2FB1 /* StringTools in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FC32E6272E200CB2FB1 /* StringTools */; };
+		5D393FC62E6273D400CB2FB1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC52E6273D400CB2FB1 /* Token.swift */; };
+		5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC72E6273F500CB2FB1 /* TokenizerProtocol.swift */; };
+		5D393FCA2E62802E00CB2FB1 /* TokenFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC92E62802E00CB2FB1 /* TokenFooterViewModel.swift */; };
+		5D393FCC2E62804300CB2FB1 /* TokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */; };
+		5D393FCE2E62831F00CB2FB1 /* TokenizerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */; };
+		5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */; };
+		5D8D27672E62D034004C806A /* Furigana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D27662E62D034004C806A /* Furigana.swift */; };
+		5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D27682E62D08A004C806A /* JapaneseUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +72,16 @@
 		5D357B712E5FEA76000A59EA /* Tesseract+PageSegmentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tesseract+PageSegmentation.swift"; sourceTree = "<group>"; };
 		5D357B732E5FEAAA000A59EA /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
 		5D357B782E5FED86000A59EA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		5D393FB72E62718A00CB2FB1 /* JapaneseTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseTokenizer.swift; sourceTree = "<group>"; };
+		5D393FBA2E62720200CB2FB1 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
+		5D393FC52E6273D400CB2FB1 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		5D393FC72E6273F500CB2FB1 /* TokenizerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizerProtocol.swift; sourceTree = "<group>"; };
+		5D393FC92E62802E00CB2FB1 /* TokenFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFooterViewModel.swift; sourceTree = "<group>"; };
+		5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFooterView.swift; sourceTree = "<group>"; };
+		5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizerHandler.swift; sourceTree = "<group>"; };
+		5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		5D8D27662E62D034004C806A /* Furigana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Furigana.swift; sourceTree = "<group>"; };
+		5D8D27682E62D08A004C806A /* JapaneseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +89,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D393FBE2E6272E200CB2FB1 /* CharacterFilter in Frameworks */,
+				5D393FC22E6272E200CB2FB1 /* Mecab-Swift in Frameworks */,
 				5D357B772E5FEBBF000A59EA /* SwiftyTesseract in Frameworks */,
+				5D393FC42E6272E200CB2FB1 /* StringTools in Frameworks */,
+				5D393FC02E6272E200CB2FB1 /* IPADic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +140,15 @@
 		5D357B232E5F63C5000A59EA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5D393FB92E6271F400CB2FB1 /* WordButton */,
 				5D357B172E5F575B000A59EA /* MainView.swift */,
 				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
 				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
 				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
 				5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */,
 				5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */,
+				5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */,
+				5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -127,6 +158,7 @@
 			children = (
 				5D357B632E5FE104000A59EA /* OCR */,
 				5D357B322E5F7EFD000A59EA /* WebBrowser */,
+				5D393FB12E62536800CB2FB1 /* Tokenizer */,
 				5D357B412E5F9ABC000A59EA /* SettingsModels.swift */,
 			);
 			path = "Model+Service";
@@ -138,6 +170,7 @@
 				5D357B2A2E5F6795000A59EA /* WebBrowserViewModel.swift */,
 				5D357B3F2E5F8981000A59EA /* HeaderViewModel.swift */,
 				5D357B472E5FBAD6000A59EA /* SettingsViewModel.swift */,
+				5D393FC92E62802E00CB2FB1 /* TokenFooterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -174,6 +207,35 @@
 			path = TesseractOCR;
 			sourceTree = "<group>";
 		};
+		5D393FB12E62536800CB2FB1 /* Tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				5D393FC52E6273D400CB2FB1 /* Token.swift */,
+				5D393FC72E6273F500CB2FB1 /* TokenizerProtocol.swift */,
+				5D393FB22E62537200CB2FB1 /* JapaneseTokenizer */,
+			);
+			path = Tokenizer;
+			sourceTree = "<group>";
+		};
+		5D393FB22E62537200CB2FB1 /* JapaneseTokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				5D393FB72E62718A00CB2FB1 /* JapaneseTokenizer.swift */,
+				5D8D27662E62D034004C806A /* Furigana.swift */,
+				5D8D27682E62D08A004C806A /* JapaneseUtils.swift */,
+			);
+			path = JapaneseTokenizer;
+			sourceTree = "<group>";
+		};
+		5D393FB92E6271F400CB2FB1 /* WordButton */ = {
+			isa = PBXGroup;
+			children = (
+				5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */,
+				5D393FBA2E62720200CB2FB1 /* WordButton.swift */,
+			);
+			path = WordButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -192,6 +254,10 @@
 			name = LinguaGlass;
 			packageProductDependencies = (
 				5D357B762E5FEBBF000A59EA /* SwiftyTesseract */,
+				5D393FBD2E6272E200CB2FB1 /* CharacterFilter */,
+				5D393FBF2E6272E200CB2FB1 /* IPADic */,
+				5D393FC12E6272E200CB2FB1 /* Mecab-Swift */,
+				5D393FC32E6272E200CB2FB1 /* StringTools */,
 			);
 			productName = LinguaGlass;
 			productReference = 5D357B122E5F575B000A59EA /* LinguaGlass.app */;
@@ -212,7 +278,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5D357B0D2E5F575B000A59EA /* Build configuration list for PBXProject "LinguaGlass" */;
+			buildConfigurationList = 5D357B0D2E5F575B000A59EA /* Build configuration list for PBXProject "LinguaGlass20" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -223,6 +289,7 @@
 			mainGroup = 5D357B092E5F575B000A59EA;
 			packageReferences = (
 				5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
+				5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */,
 			);
 			productRefGroup = 5D357B132E5F575B000A59EA /* Products */;
 			projectDirPath = "";
@@ -252,25 +319,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D357B6B2E5FE27A000A59EA /* OCRCaptureService.swift in Sources */,
+				5D393FC62E6273D400CB2FB1 /* Token.swift in Sources */,
 				5D357B6D2E5FE29D000A59EA /* ImageOCR.swift in Sources */,
+				5D393FBB2E62720200CB2FB1 /* WordButton.swift in Sources */,
 				5D357B182E5F575B000A59EA /* MainView.swift in Sources */,
 				5D357B722E5FEA76000A59EA /* Tesseract+PageSegmentation.swift in Sources */,
 				5D357B2B2E5F6795000A59EA /* WebBrowserViewModel.swift in Sources */,
+				5D393FCC2E62804300CB2FB1 /* TokenFooterView.swift in Sources */,
 				5D357B6F2E5FE306000A59EA /* OCRService.swift in Sources */,
 				5D357B2D2E5F67DF000A59EA /* WebPersistanceService.swift in Sources */,
+				5D393FB82E62718A00CB2FB1 /* JapaneseTokenizer.swift in Sources */,
 				5D357B162E5F575B000A59EA /* LinguaGlassApp.swift in Sources */,
 				5D357B422E5F9ABC000A59EA /* SettingsModels.swift in Sources */,
+				5D393FCE2E62831F00CB2FB1 /* TokenizerHandler.swift in Sources */,
 				5D357B272E5F6737000A59EA /* WebPage.swift in Sources */,
 				5D357B402E5F8981000A59EA /* HeaderViewModel.swift in Sources */,
 				5D357B2F2E5F6830000A59EA /* WebBrowserView.swift in Sources */,
 				5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */,
+				5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */,
 				5D357B692E5FE1F5000A59EA /* OCRGestureHandler.swift in Sources */,
 				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
 				5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */,
+				5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */,
+				5D8D27672E62D034004C806A /* Furigana.swift in Sources */,
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
 				5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */,
 				5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */,
+				5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */,
+				5D393FCA2E62802E00CB2FB1 /* TokenFooterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +534,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5D357B0D2E5F575B000A59EA /* Build configuration list for PBXProject "LinguaGlass" */ = {
+		5D357B0D2E5F575B000A59EA /* Build configuration list for PBXProject "LinguaGlass20" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D357B1E2E5F575E000A59EA /* Debug */,
@@ -486,6 +563,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shinjukunian/Mecab-Swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -493,6 +578,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
+		};
+		5D393FBD2E6272E200CB2FB1 /* CharacterFilter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = CharacterFilter;
+		};
+		5D393FBF2E6272E200CB2FB1 /* IPADic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = IPADic;
+		};
+		5D393FC12E6272E200CB2FB1 /* Mecab-Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = "Mecab-Swift";
+		};
+		5D393FC32E6272E200CB2FB1 /* StringTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = StringTools;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
