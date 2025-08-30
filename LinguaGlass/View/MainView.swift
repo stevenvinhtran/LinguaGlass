@@ -41,7 +41,7 @@ struct MainView: View {
             TokenFooter(viewModel: tokenFooterViewModel, settingsViewModel: settingsViewModel)
                 .keyboardAdaptive()
         }
-        .onChange(of: webViewModel.state.isLoading) { isLoading in
+        .onChange(of: webViewModel.state.isLoading, initial: false) { _, isLoading in
             showProgress = isLoading
         }
         .sheet(isPresented: $showSettings) {

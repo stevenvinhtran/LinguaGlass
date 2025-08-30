@@ -34,14 +34,14 @@ struct TokenFooter: View {
             .background(Color.gray.opacity(0.1))
         }
         .ignoresSafeArea(edges: .bottom)
-        .onChange(of: viewModel.isEditing) { editing in
+        .onChange(of: viewModel.isEditing, initial: false) { _, editing in
             if editing {
                 isTextFieldFocused = true
             } else {
                 isTextFieldFocused = false
             }
         }
-        .onChange(of: isTextFieldFocused) { focused in
+        .onChange(of: isTextFieldFocused, initial: false) { _, focused in
             if !focused && viewModel.isEditing {
                 // User tapped away from keyboard, commit changes
                 viewModel.commitEditing(settingsViewModel: settingsViewModel)
@@ -49,7 +49,7 @@ struct TokenFooter: View {
         }
         .onChange(of: settingsViewModel.settings.selectedLanguage) {
             Task {
-                if let tokenizer = try? TokenizerHandler.makeTokenizer(using: settingsViewModel.settings) {
+                if (try? TokenizerHandler.makeTokenizer(using: settingsViewModel.settings)) != nil {
                     await viewModel.tokenize(from: viewModel.editText, settingsViewModel: settingsViewModel)
                 }
             }

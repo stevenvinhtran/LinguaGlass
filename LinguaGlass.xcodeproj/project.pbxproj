@@ -43,6 +43,7 @@
 		5D393FCC2E62804300CB2FB1 /* TokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */; };
 		5D393FCE2E62831F00CB2FB1 /* TokenizerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */; };
 		5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */; };
+		5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */; };
 		5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D27682E62D08A004C806A /* JapaneseUtils.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFooterView.swift; sourceTree = "<group>"; };
 		5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizerHandler.swift; sourceTree = "<group>"; };
 		5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanTokenizer.swift; sourceTree = "<group>"; };
 		5D8D27682E62D08A004C806A /* JapaneseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,15 +140,12 @@
 		5D357B232E5F63C5000A59EA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5D393FB92E6271F400CB2FB1 /* WordButton */,
 				5D357B172E5F575B000A59EA /* MainView.swift */,
 				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
 				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
 				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
-				5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */,
-				5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */,
-				5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */,
-				5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */,
+				5D6E1E3D2E63810600414F9C /* OCRView */,
+				5D6E1E3C2E6380E700414F9C /* FooterView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,7 +209,10 @@
 			children = (
 				5D393FC52E6273D400CB2FB1 /* Token.swift */,
 				5D393FC72E6273F500CB2FB1 /* TokenizerProtocol.swift */,
+				5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */,
 				5D393FB22E62537200CB2FB1 /* JapaneseTokenizer */,
+				5D6E1E3A2E6380B000414F9C /* KoreanTokenizer */,
+				5D6E1E3B2E6380C500414F9C /* VietnameseTokenizer */,
 			);
 			path = Tokenizer;
 			sourceTree = "<group>";
@@ -224,13 +226,38 @@
 			path = JapaneseTokenizer;
 			sourceTree = "<group>";
 		};
-		5D393FB92E6271F400CB2FB1 /* WordButton */ = {
+		5D6E1E3A2E6380B000414F9C /* KoreanTokenizer */ = {
 			isa = PBXGroup;
 			children = (
-				5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */,
-				5D393FBA2E62720200CB2FB1 /* WordButton.swift */,
+				5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */,
 			);
-			path = WordButton;
+			path = KoreanTokenizer;
+			sourceTree = "<group>";
+		};
+		5D6E1E3B2E6380C500414F9C /* VietnameseTokenizer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VietnameseTokenizer;
+			sourceTree = "<group>";
+		};
+		5D6E1E3C2E6380E700414F9C /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				5D393FBA2E62720200CB2FB1 /* WordButton.swift */,
+				5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */,
+				5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */,
+			);
+			path = FooterView;
+			sourceTree = "<group>";
+		};
+		5D6E1E3D2E63810600414F9C /* OCRView */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B662E5FE195000A59EA /* OCRSelectionOverlayView.swift */,
+				5D357B682E5FE1F5000A59EA /* OCRGestureHandler.swift */,
+			);
+			path = OCRView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +367,7 @@
 				5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */,
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
+				5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */,
 				5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */,
 				5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */,
 				5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */,

@@ -14,12 +14,11 @@ struct TokenizerHandler {
             return try JapaneseTokenizer()
 
         case .korean:
-            print("Korean tokenizer has not been implemented yet. Using Japanese tokenizer as placeholder.")
-            return try JapaneseTokenizer() // TODO: Replace with KoreanTokenizer()
+            return KoreanTokenizer()
 
         case .vietnamese:
-            print("Vietnamese tokenizer has not been implemented yet. Using Japanese tokenizer as placeholder.")
-            return try JapaneseTokenizer() // TODO: Replace with VietnameseTokenizer()
+            print("Vietnamese tokenizer has not been implemented yet. Using Korean tokenizer as placeholder.")
+            return KoreanTokenizer() // TODO: Replace with VietnameseTokenizer()
         }
     }
 

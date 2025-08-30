@@ -35,7 +35,7 @@ struct WebBrowserView: View {
             // OCR Visual Overlay
             OCRSelectionOverlayView(selectionRect: headerViewModel.getSelectionRect())
         }
-        .onChange(of: tokenFooterViewModel.isEditing) { isEditing in
+        .onChange(of: tokenFooterViewModel.isEditing, initial: false) { _, isEditing in
             if isEditing {
                 if headerViewModel.isOCRModeActive {
                     headerViewModel.isOCRModeActive = false
@@ -50,11 +50,7 @@ struct WebBrowserView: View {
             case .success(let text):
                 print("OCR Result: \(text)")
                 Task {
-                    do {
-                        await tokenFooterViewModel.tokenize(from: text, settingsViewModel: settingsViewModel)
-                    } catch {
-                        print("Tokenization error: \(error)")
-                    }
+                    await tokenFooterViewModel.tokenize(from: text, settingsViewModel: settingsViewModel)
                 }
 
             case .failure(let error):
