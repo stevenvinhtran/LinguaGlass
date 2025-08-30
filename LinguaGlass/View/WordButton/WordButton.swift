@@ -1,35 +1,45 @@
 //
-//  JapaneseWordButton.swift
+//  WordButton.swift
 //  LinguaGlass
 //
 //  Created by Steven Tran on 8/29/25.
-//
+//  Original idea: https: //github.com/juanj/KantanManga
 
 import Foundation
 import SwiftUI
+
+let mainFontSize = 55.0
+let furiganaFontSize = 18.0
 
 struct WordButton: View {
     let token: Token
     let isSelected: Bool
     let action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
             if let furigana = token.furigana, !furigana.isEmpty {
                 FuriganaText(base: token.text, furigana: furigana)
-                    .foregroundColor(isSelected ? .white : .primary)
+                    .foregroundColor(isSelected ? .white : .black)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(isSelected ? Color.black : Color.clear)
                     .cornerRadius(8)
             } else {
-                Text(token.text)
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(isSelected ? .white : .primary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(isSelected ? Color.black : Color.clear)
-                    .cornerRadius(8)
+                // Add invisible furigana spacer to maintain consistent height
+                VStack(spacing: 0) {
+                    Text(" ")
+                        .font(.system(size: furiganaFontSize))
+                        .opacity(0)
+                        .frame(height: 12) // Match furigana height
+                    Text(token.text)
+                        .font(.system(size: mainFontSize, weight: .semibold))
+                }
+                .foregroundColor(isSelected ? .white : .black)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(isSelected ? Color.black : Color.clear)
+                .cornerRadius(8)
             }
         }
         .buttonStyle(.plain)
@@ -46,13 +56,16 @@ struct FuriganaText: View {
                 VStack(spacing: 0) {
                     if let kana = seg.kana {
                         Text(kana)
-                            .font(.caption2)
+                            .font(.system(size: furiganaFontSize))
                             .frame(height: 12)
                     } else {
-                        Text(" ").font(.caption2).opacity(0)
+                        Text(" ")
+                            .font(.system(size: furiganaFontSize))
+                            .opacity(0)
+                            .frame(height: 12)
                     }
                     Text(seg.text)
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.system(size: mainFontSize, weight: .semibold))
                 }
             }
         }
@@ -92,4 +105,3 @@ struct FuriganaText: View {
         let kana: String?
     }
 }
-

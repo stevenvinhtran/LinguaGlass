@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol TokenizerService {
+    func tokenize(text: String) async throws -> [Token]
+}

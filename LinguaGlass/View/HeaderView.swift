@@ -8,7 +8,7 @@ struct HeaderView: View {
     var onSettings: () -> Void
     
     var body: some View {
-        VStack() {
+        VStack(spacing: 0) {
             HStack(spacing: 16) {
                 // OCR Selection Mode Button
                 Button(action: {

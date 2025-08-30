@@ -11,6 +11,9 @@ import WebKit
 struct WebBrowserView: View {
     @StateObject var viewModel: WebBrowserViewModel
     @ObservedObject var headerViewModel: HeaderViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel
+    @ObservedObject var tokenFooterViewModel: TokenFooterViewModel
+
     @State var showProgress: Bool
     @State var ocrCaptureService: OCRCaptureService
     
@@ -20,19 +23,24 @@ struct WebBrowserView: View {
                 // WebView content
                 WebViewRepresentable(viewModel: viewModel)
                     .edgesIgnoringSafeArea(.bottom)
+                    .allowsHitTesting(!tokenFooterViewModel.isEditing)
             }
             
             // OCR Gesture Handler Overlay
             OCRGestureHandler(headerViewModel: headerViewModel) { selectionRect in
                 captureOCRImage(from: selectionRect)
             }
-            .allowsHitTesting(headerViewModel.isOCRModeActive)
+            .allowsHitTesting(headerViewModel.isOCRModeActive && !tokenFooterViewModel.isEditing)
             
             // OCR Visual Overlay
             OCRSelectionOverlayView(selectionRect: headerViewModel.getSelectionRect())
         }
-        .onChange(of: viewModel.state.isLoading) { isLoading in
-            // You might want to handle progress changes here if needed
+        .onChange(of: tokenFooterViewModel.isEditing) { isEditing in
+            if isEditing {
+                if headerViewModel.isOCRModeActive {
+                    headerViewModel.isOCRModeActive = false
+                }
+            }
         }
     }
     
@@ -41,6 +49,14 @@ struct WebBrowserView: View {
             switch result {
             case .success(let text):
                 print("OCR Result: \(text)")
+                Task {
+                    do {
+                        await tokenFooterViewModel.tokenize(from: text, settingsViewModel: settingsViewModel)
+                    } catch {
+                        print("Tokenization error: \(error)")
+                    }
+                }
+
             case .failure(let error):
                 print("OCR Error: \(error.localizedDescription)")
             }
@@ -103,7 +119,7 @@ struct WebBrowserControlsView: View {
             .padding(.vertical, 8)
             
             // Progress Bar
-            if showProgress {
+            if viewModel.state.isLoading {
                 ProgressView(value: viewModel.state.estimatedProgress)
                     .progressViewStyle(LinearProgressViewStyle())
                     .frame(height: 2)

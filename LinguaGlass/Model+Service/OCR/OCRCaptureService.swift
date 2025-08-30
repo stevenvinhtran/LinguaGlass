@@ -1,5 +1,5 @@
 //
-//  OCRService.swift
+//  OCRCaptureService.swift
 //  LinguaGlass
 //
 //  Created by Steven Tran on 8/27/25.

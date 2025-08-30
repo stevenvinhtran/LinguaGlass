@@ -3,7 +3,7 @@
 //  Kantan-Manga
 //
 //  Created by Juan on 20/11/20.
-//  https://github.com/juanj/KantanManga/blob/development/MangaReader/OCR/Tesseract%2BPageSegmentation.swift
+//  https: //github.com/juanj/KantanManga/
 
 import SwiftyTesseract
 import libtesseract

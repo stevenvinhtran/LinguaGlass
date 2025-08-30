@@ -5,7 +5,7 @@
 //  Created by DevBakura on 23/05/20.
 //  Copyright © 2020 Juan. All rights reserved.
 //
-// https://github.com/juanj/KantanManga/blob/development/MangaReader/OCR/ImageOCR.swift
+// https: //github.com/juanj/KantanManga/
 
 import Foundation
 import UIKit
