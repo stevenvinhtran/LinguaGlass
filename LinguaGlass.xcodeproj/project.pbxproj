@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D27AF802E635A7E000E7BC2 /* CharacterFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 5D27AF7F2E635A7E000E7BC2 /* CharacterFilter */; };
+		5D27AF822E635A7E000E7BC2 /* IPADic in Frameworks */ = {isa = PBXBuildFile; productRef = 5D27AF812E635A7E000E7BC2 /* IPADic */; };
+		5D27AF842E635A7E000E7BC2 /* Mecab-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D27AF832E635A7E000E7BC2 /* Mecab-Swift */; };
+		5D27AF862E635A7E000E7BC2 /* StringTools in Frameworks */ = {isa = PBXBuildFile; productRef = 5D27AF852E635A7E000E7BC2 /* StringTools */; };
 		5D357B162E5F575B000A59EA /* LinguaGlassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */; };
 		5D357B182E5F575B000A59EA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D357B172E5F575B000A59EA /* MainView.swift */; };
 		5D357B1A2E5F575E000A59EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B192E5F575E000A59EA /* Assets.xcassets */; };
@@ -33,10 +37,6 @@
 		5D357B792E5FED87000A59EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 5D357B782E5FED86000A59EA /* tessdata */; };
 		5D393FB82E62718A00CB2FB1 /* JapaneseTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FB72E62718A00CB2FB1 /* JapaneseTokenizer.swift */; };
 		5D393FBB2E62720200CB2FB1 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FBA2E62720200CB2FB1 /* WordButton.swift */; };
-		5D393FBE2E6272E200CB2FB1 /* CharacterFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FBD2E6272E200CB2FB1 /* CharacterFilter */; };
-		5D393FC02E6272E200CB2FB1 /* IPADic in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FBF2E6272E200CB2FB1 /* IPADic */; };
-		5D393FC22E6272E200CB2FB1 /* Mecab-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FC12E6272E200CB2FB1 /* Mecab-Swift */; };
-		5D393FC42E6272E200CB2FB1 /* StringTools in Frameworks */ = {isa = PBXBuildFile; productRef = 5D393FC32E6272E200CB2FB1 /* StringTools */; };
 		5D393FC62E6273D400CB2FB1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC52E6273D400CB2FB1 /* Token.swift */; };
 		5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC72E6273F500CB2FB1 /* TokenizerProtocol.swift */; };
 		5D393FCA2E62802E00CB2FB1 /* TokenFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FC92E62802E00CB2FB1 /* TokenFooterViewModel.swift */; };
@@ -87,11 +87,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D393FBE2E6272E200CB2FB1 /* CharacterFilter in Frameworks */,
-				5D393FC22E6272E200CB2FB1 /* Mecab-Swift in Frameworks */,
+				5D27AF802E635A7E000E7BC2 /* CharacterFilter in Frameworks */,
+				5D27AF842E635A7E000E7BC2 /* Mecab-Swift in Frameworks */,
 				5D357B772E5FEBBF000A59EA /* SwiftyTesseract in Frameworks */,
-				5D393FC42E6272E200CB2FB1 /* StringTools in Frameworks */,
-				5D393FC02E6272E200CB2FB1 /* IPADic in Frameworks */,
+				5D27AF862E635A7E000E7BC2 /* StringTools in Frameworks */,
+				5D27AF822E635A7E000E7BC2 /* IPADic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,10 +251,10 @@
 			name = LinguaGlass;
 			packageProductDependencies = (
 				5D357B762E5FEBBF000A59EA /* SwiftyTesseract */,
-				5D393FBD2E6272E200CB2FB1 /* CharacterFilter */,
-				5D393FBF2E6272E200CB2FB1 /* IPADic */,
-				5D393FC12E6272E200CB2FB1 /* Mecab-Swift */,
-				5D393FC32E6272E200CB2FB1 /* StringTools */,
+				5D27AF7F2E635A7E000E7BC2 /* CharacterFilter */,
+				5D27AF812E635A7E000E7BC2 /* IPADic */,
+				5D27AF832E635A7E000E7BC2 /* Mecab-Swift */,
+				5D27AF852E635A7E000E7BC2 /* StringTools */,
 			);
 			productName = LinguaGlass;
 			productReference = 5D357B122E5F575B000A59EA /* LinguaGlass.app */;
@@ -286,7 +286,7 @@
 			mainGroup = 5D357B092E5F575B000A59EA;
 			packageReferences = (
 				5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
-				5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */,
+				5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */,
 			);
 			productRefGroup = 5D357B132E5F575B000A59EA /* Products */;
 			projectDirPath = "";
@@ -551,6 +551,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shinjukunian/Mecab-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 		5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract";
@@ -559,41 +567,33 @@
 				minimumVersion = 4.0.1;
 			};
 		};
-		5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/shinjukunian/Mecab-Swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5D27AF7F2E635A7E000E7BC2 /* CharacterFilter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = CharacterFilter;
+		};
+		5D27AF812E635A7E000E7BC2 /* IPADic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = IPADic;
+		};
+		5D27AF832E635A7E000E7BC2 /* Mecab-Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = "Mecab-Swift";
+		};
+		5D27AF852E635A7E000E7BC2 /* StringTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D27AF7E2E635A7E000E7BC2 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
+			productName = StringTools;
+		};
 		5D357B762E5FEBBF000A59EA /* SwiftyTesseract */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D357B752E5FEBBF000A59EA /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
-		};
-		5D393FBD2E6272E200CB2FB1 /* CharacterFilter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
-			productName = CharacterFilter;
-		};
-		5D393FBF2E6272E200CB2FB1 /* IPADic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
-			productName = IPADic;
-		};
-		5D393FC12E6272E200CB2FB1 /* Mecab-Swift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
-			productName = "Mecab-Swift";
-		};
-		5D393FC32E6272E200CB2FB1 /* StringTools */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5D393FBC2E6272E200CB2FB1 /* XCRemoteSwiftPackageReference "Mecab-Swift" */;
-			productName = StringTools;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

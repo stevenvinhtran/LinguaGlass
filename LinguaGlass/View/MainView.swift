@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct MainView: View {
     @StateObject private var webViewModel = WebBrowserViewModel()
@@ -52,3 +53,37 @@ struct MainView: View {
         .ignoresSafeArea(edges: .bottom)
     }
 }
+
+final class HostingController<Content: View>: UIHostingController<Content> {
+
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        // Keep the home indicator visible so the first swipe just dims it
+        return false
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Require an extra swipe by delaying system gestures
+        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+    }
+
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+        // Defer system gestures on the bottom edge
+        return [.bottom]
+    }
+}
+
+struct UIKitWrapper<Content: View>: UIViewControllerRepresentable {
+    let content: Content
+
+    init(@ViewBuilder _ content: () -> Content) {
+        self.content = content()
+    }
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        HostingController(rootView: content)
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+

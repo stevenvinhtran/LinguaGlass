@@ -11,7 +11,10 @@ import SwiftUI
 struct LinguaGlassApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            UIKitWrapper {
+                MainView()
+            }
+            .ignoresSafeArea(.all)
         }
     }
 }
