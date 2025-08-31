@@ -48,11 +48,9 @@ struct WebBrowserView: View {
         ocrCaptureService.captureOCRImage(from: rect, in: viewModel.webView) { result in
             switch result {
             case .success(let text):
-                print("OCR Result: \(text)")
                 Task {
                     await tokenFooterViewModel.tokenize(from: text, settingsViewModel: settingsViewModel)
                 }
-
             case .failure(let error):
                 print("OCR Error: \(error.localizedDescription)")
             }

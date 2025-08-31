@@ -44,6 +44,7 @@
 		5D393FCE2E62831F00CB2FB1 /* TokenizerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */; };
 		5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */; };
 		5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */; };
+		5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */; };
 		5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D27682E62D08A004C806A /* JapaneseUtils.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizerHandler.swift; sourceTree = "<group>"; };
 		5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanTokenizer.swift; sourceTree = "<group>"; };
+		5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWebView.swift; sourceTree = "<group>"; };
 		5D8D27682E62D08A004C806A /* JapaneseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +249,7 @@
 				5D393FBA2E62720200CB2FB1 /* WordButton.swift */,
 				5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */,
 				5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */,
+				5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */,
 			);
 			path = FooterView;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
 				5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */,
 				5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */,
+				5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */,
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
 				5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */,

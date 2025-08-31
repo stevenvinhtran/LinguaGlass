@@ -11,13 +11,21 @@ import SwiftUI
 let mainFontSize = 55.0
 let furiganaFontSize = 18.0
 
+// WordButton.swift
 struct WordButton: View {
     let token: Token
     let isSelected: Bool
     let action: () -> Void
+    let onDictionary: (Token) -> Void
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            action()
+            // Delay to allow selection visual feedback
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                onDictionary(token)
+            }
+        }) {
             if let furigana = token.furigana, !furigana.isEmpty {
                 FuriganaText(base: token.text, furigana: furigana)
                     .foregroundColor(isSelected ? .white : .black)
