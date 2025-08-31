@@ -4,7 +4,7 @@
 //
 //  Created by Juan on 7/01/20.
 //  Copyright © 2020 Bakura. All rights reserved.
-//  https:// github.com/juanj/KantanManga
+//  https://github.com/juanj/KantanManga
 
 import Foundation
 

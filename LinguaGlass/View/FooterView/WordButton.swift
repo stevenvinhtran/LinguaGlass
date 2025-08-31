@@ -3,7 +3,7 @@
 //  LinguaGlass
 //
 //  Created by Steven Tran on 8/29/25.
-//  Original idea: https: //github.com/juanj/KantanManga
+//  Original idea: https://github.com/juanj/KantanManga
 
 import Foundation
 import SwiftUI

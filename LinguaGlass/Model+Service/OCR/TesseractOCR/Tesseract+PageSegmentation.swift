@@ -3,7 +3,7 @@
 //  Kantan-Manga
 //
 //  Created by Juan on 20/11/20.
-//  https: //github.com/juanj/KantanManga/
+//  https://github.com/juanj/KantanManga/
 
 import SwiftyTesseract
 import libtesseract

@@ -93,51 +93,9 @@ class OCRService: ImageOCR {
             observation.topCandidates(1).first?.string
         }.joined(separator: "\n")
         
-        let cleanText = cleanVisionOutput(recognizedText, for: settings.selectedLanguage)
-        
-        completion(.success(cleanText))
+        completion(.success(recognizedText))
     }
     
-    private func cleanVisionOutput(_ output: String, for language: Language) -> String {
-        var cleanText = output.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        switch language {
-        case .japaneseHorizontal, .japaneseVertical:
-            var notAllowed = CharacterSet.decimalDigits
-            notAllowed.formUnion(CharacterSet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ".unicodeScalars))
-            notAllowed.formUnion(CharacterSet(#"-_/\()|〔〕[]{}%:<>"#.unicodeScalars))
-            
-            let cleanUnicodeScalars = cleanText
-                .replacingOccurrences(of: "\n", with: "  ")
-                .unicodeScalars
-                .filter { !notAllowed.contains($0) }
-            cleanText = String(cleanUnicodeScalars)
-            
-        case .korean:
-            var notAllowed = CharacterSet.decimalDigits
-            notAllowed.formUnion(CharacterSet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ".unicodeScalars))
-            notAllowed.formUnion(CharacterSet(#"-_/\()|〔〕[]{}%:<>"#.unicodeScalars))
-            
-            let cleanUnicodeScalars = cleanText
-                .replacingOccurrences(of: "\n", with: "  ")
-                .unicodeScalars
-                .filter { !notAllowed.contains($0) }
-            cleanText = String(cleanUnicodeScalars)
-            
-        case .vietnamese:
-            // Remove only symbols and numbers, keep Latin letters
-            var notAllowed = CharacterSet.decimalDigits
-            notAllowed.formUnion(CharacterSet(#"-_/\()|〔〕[]{}%:<>"#.unicodeScalars))
-            
-            let cleanUnicodeScalars = cleanText
-                .replacingOccurrences(of: "\n", with: "  ")
-                .unicodeScalars
-                .filter { !notAllowed.contains($0) }
-            cleanText = String(cleanUnicodeScalars)
-        }
-        cleanText = cleanText.lowercased()
-        return cleanText
-    }
 }
 
 enum OCRError: Error {

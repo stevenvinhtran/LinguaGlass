@@ -17,8 +17,7 @@ struct TokenizerHandler {
             return KoreanTokenizer()
 
         case .vietnamese:
-            print("Vietnamese tokenizer has not been implemented yet. Using Korean tokenizer as placeholder.")
-            return KoreanTokenizer() // TODO: Replace with VietnameseTokenizer()
+            return try VietnameseTokenizer()
         }
     }
 
@@ -28,7 +27,7 @@ struct TokenizerHandler {
         settings: AppSettings
     ) async throws -> [Token] {
         let tokenizer = try makeTokenizer(using: settings)
-        let tokens = try await tokenizer.tokenize(text: text)
+        let tokens = try await tokenizer.tokenize(text: text.cleaned(for: settings.selectedLanguage))
         headerViewModel.isProcessing = false
         return tokens
     }
