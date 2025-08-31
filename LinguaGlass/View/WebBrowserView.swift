@@ -45,11 +45,12 @@ struct WebBrowserView: View {
     }
     
     private func captureOCRImage(from rect: CGRect) {
+        headerViewModel.isProcessing = true
         ocrCaptureService.captureOCRImage(from: rect, in: viewModel.webView) { result in
             switch result {
             case .success(let text):
                 Task {
-                    await tokenFooterViewModel.tokenize(from: text, settingsViewModel: settingsViewModel)
+                    await tokenFooterViewModel.tokenize(from: text, headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
                 }
             case .failure(let error):
                 print("OCR Error: \(error.localizedDescription)")

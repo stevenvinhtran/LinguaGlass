@@ -22,14 +22,14 @@ final class TokenFooterViewModel: ObservableObject {
         isEditing = true
     }
 
-    func commitEditing(settingsViewModel: SettingsViewModel) {
-        Task { await tokenize(from: editText, settingsViewModel: settingsViewModel) }
+    func commitEditing(headerViewModel: HeaderViewModel, settingsViewModel: SettingsViewModel) {
+        Task { await tokenize(from: editText, headerViewModel: headerViewModel, settingsViewModel: settingsViewModel) }
         isEditing = false
     }
 
-    func pasteFromClipboard(settingsViewModel: SettingsViewModel) {
+    func pasteFromClipboard(headerViewModel: HeaderViewModel, settingsViewModel: SettingsViewModel) {
         if let text = UIPasteboard.general.string {
-            Task { await tokenize(from: text, settingsViewModel: settingsViewModel) }
+            Task { await tokenize(from: text, headerViewModel: headerViewModel, settingsViewModel: settingsViewModel) }
             isEditing = false
         }
     }
@@ -67,9 +67,9 @@ final class TokenFooterViewModel: ObservableObject {
         selectedToken = nil
     }
 
-    func tokenize(from text: String, settingsViewModel: SettingsViewModel) async {
+    func tokenize(from text: String, headerViewModel: HeaderViewModel, settingsViewModel: SettingsViewModel) async {
         do {
-            let newTokens = try await TokenizerHandler.tokenize(text, settings: settingsViewModel.settings)
+            let newTokens = try await TokenizerHandler.tokenize(text, headerViewModel: headerViewModel, settings: settingsViewModel.settings)
             tokens = newTokens
         } catch {
             print("Tokenization failed: \(error)")

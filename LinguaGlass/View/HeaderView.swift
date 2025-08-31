@@ -1,4 +1,10 @@
-// HeaderView.swift
+//
+//  HeaderView.swift
+//  LinguaGlass
+//
+//  Created by Steven Tran on 8/27/25.
+//
+
 import SwiftUI
 
 struct HeaderView: View {
@@ -27,7 +33,7 @@ struct HeaderView: View {
                 // Live Text Image Mode Button
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.3)) {
-                        viewModel.toggleLiveTextMode()
+                        viewModel.toggleLiveTextMode(for: webViewModel.webView)
                     }
                 }) {
                     Image(systemName: "camera")
@@ -38,7 +44,34 @@ struct HeaderView: View {
                         .clipShape(Circle())
                 }
                 
-                Spacer()
+                // Processing Indicator when OCR/tokenization is happening
+                if viewModel.isProcessing {
+                    ProgressView()
+                        .frame(width: 20, height: 20)
+                        .padding(.trailing, 4)
+                }
+                
+                if viewModel.isLiveTextModeActive {
+                    Spacer()
+                    Text("Live Text")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.blue)
+                        .transition(.opacity)
+                    Spacer()
+                } else {
+                    Spacer()
+                }
+                
+                // Hide Footer Button
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        viewModel.toggleFooter()
+                    }
+                }) {
+                    Image(systemName: viewModel.isFooterHidden ? "menubar.rectangle" : "menubar.dock.rectangle")
+                        .font(.system(size: 16))
+                        .foregroundColor(.primary)
+                }
                 
                 // Hide Search Bar Button
                 Button(action: {
@@ -46,7 +79,7 @@ struct HeaderView: View {
                         viewModel.toggleSearchBar()
                     }
                 }) {
-                    Image(systemName: viewModel.isSearchBarHidden ? "menubar.rectangle" : "menubar.dock.rectangle")
+                    Image(systemName: viewModel.isSearchBarHidden ? "chevron.up" : "chevron.down")
                         .font(.system(size: 16))
                         .foregroundColor(.primary)
                 }

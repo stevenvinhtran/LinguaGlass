@@ -26,20 +26,40 @@ struct MainView: View {
                 onSettings: { showSettings.toggle() }
             )
 
-            WebBrowserView(
-                viewModel: webViewModel,
-                headerViewModel: headerViewModel,
-                settingsViewModel: settingsViewModel,
-                tokenFooterViewModel: tokenFooterViewModel,
-                showProgress: showProgress,
-                ocrCaptureService: OCRCaptureService(settingsViewModel: settingsViewModel)
-            )
+            GeometryReader { geo in
+                ZStack {
+                    WebBrowserView(
+                        viewModel: webViewModel,
+                        headerViewModel: headerViewModel,
+                        settingsViewModel: settingsViewModel,
+                        tokenFooterViewModel: tokenFooterViewModel,
+                        showProgress: showProgress,
+                        ocrCaptureService: OCRCaptureService(settingsViewModel: settingsViewModel)
+                    )
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .opacity(headerViewModel.isLiveTextModeActive ? 0 : 1)
 
-            Spacer().frame(height: TokenFooter.footerHeight)
+                    if headerViewModel.isLiveTextModeActive, let image = headerViewModel.liveTextImage {
+                        LiveTextImageView(image: image)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .background(Color.clear)
+                            .transition(.opacity)
+                            .disabled(!headerViewModel.isLiveTextModeActive)
+                    }
+                }
+            }
+
+            
+            if !headerViewModel.isFooterHidden {
+                Spacer().frame(height: TokenFooter.footerHeight)
+            }
         }
         .overlay(alignment: .bottom) {
-            TokenFooter(viewModel: tokenFooterViewModel, settingsViewModel: settingsViewModel)
+            TokenFooter(viewModel: tokenFooterViewModel, headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
                 .keyboardAdaptive()
+                .opacity(headerViewModel.isFooterHidden ? 0 : 1) // Make invisible but maintain layout
+                .allowsHitTesting(!headerViewModel.isFooterHidden) // Disable interactions when hidden
+                .animation(.easeInOut(duration: 0.3), value: headerViewModel.isFooterHidden)
         }
         .onChange(of: webViewModel.state.isLoading, initial: false) { _, isLoading in
             showProgress = isLoading

@@ -24,9 +24,12 @@ struct TokenizerHandler {
 
     static func tokenize(
         _ text: String,
+        headerViewModel: HeaderViewModel,
         settings: AppSettings
     ) async throws -> [Token] {
         let tokenizer = try makeTokenizer(using: settings)
-        return try await tokenizer.tokenize(text: text)
+        let tokens = try await tokenizer.tokenize(text: text)
+        headerViewModel.isProcessing = false
+        return tokens
     }
 }

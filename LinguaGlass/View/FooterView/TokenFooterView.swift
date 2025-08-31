@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TokenFooter: View {
     @ObservedObject var viewModel: TokenFooterViewModel
+    @ObservedObject var headerViewModel: HeaderViewModel
     @ObservedObject var settingsViewModel: SettingsViewModel
     @FocusState private var isTextFieldFocused: Bool
 
@@ -131,7 +132,7 @@ struct TokenFooter: View {
             .highPriorityGesture(
                 hasToken ? AnyGesture(sheetDragGesture) : nil
             )
-            .zIndex(1)
+            .zIndex(headerViewModel.isFooterHidden ? -1 : 1)
         }
         .ignoresSafeArea(edges: .bottom)
 
@@ -147,13 +148,13 @@ struct TokenFooter: View {
         .onChange(of: isTextFieldFocused, initial: false) { _, focused in
             if !focused && viewModel.isEditing {
                 // User tapped away from keyboard, commit changes
-                viewModel.commitEditing(settingsViewModel: settingsViewModel)
+                viewModel.commitEditing(headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
             }
         }
         .onChange(of: settingsViewModel.settings.selectedLanguage) {
             Task {
                 if (try? TokenizerHandler.makeTokenizer(using: settingsViewModel.settings)) != nil {
-                    await viewModel.tokenize(from: viewModel.editText, settingsViewModel: settingsViewModel)
+                    await viewModel.tokenize(from: viewModel.editText, headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
                 }
             }
         }
@@ -170,13 +171,13 @@ struct TokenFooter: View {
                 .frame(height: Self.footerHeight)
                 .padding(.horizontal, horizontalPadding + buttonPadding)
                 .focused($isTextFieldFocused)
-                .onSubmit { viewModel.commitEditing(settingsViewModel: settingsViewModel) }
+                .onSubmit { viewModel.commitEditing(headerViewModel: headerViewModel, settingsViewModel: settingsViewModel) }
                 .submitLabel(.done)
             Spacer()
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                viewModel.commitEditing(settingsViewModel: settingsViewModel)
+                viewModel.commitEditing(headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
             } label: {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 18, weight: .bold))
@@ -208,7 +209,7 @@ struct TokenFooter: View {
             HStack(spacing: 0) {
                 // Paste button
                 Button {
-                    viewModel.pasteFromClipboard(settingsViewModel: settingsViewModel)
+                    viewModel.pasteFromClipboard(headerViewModel: headerViewModel, settingsViewModel: settingsViewModel)
                 } label: {
                     Image(systemName: "doc.on.clipboard")
                         .font(.system(size: 14, weight: .semibold))
