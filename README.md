@@ -2,6 +2,8 @@
 
 LinguaGlass is a iOS application designed for immersive reading for language learners. Extract text from the web and tap any word to reveal its meaning. Heavily inspired by [KantanManga](https://github.com/juanj/KantanManga). Primarily built to enable the language learners to read manga/manhwa easier.
 
+Note: This is one of my first coding projects, so the code may be messy and unclear.
+
 ## Features
 
 - **OCR Mode**  
