@@ -104,35 +104,24 @@ struct SettingsView: View {
     }
 }
 
-// Placeholder views for About and Acknowledgements
 struct AboutView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("About LinguaGlass")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    
-                    Text("LinguaGlass is a powerful language learning tool that combines OCR technology with text tokenization to help you read and understand foreign languages more effectively.")
-                        .foregroundColor(.secondary)
-                    
-                    Text("Features:")
-                        .font(.headline)
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        FeatureRow(icon: "text.viewfinder", text: "OCR text extraction from web content")
-                        FeatureRow(icon: "text.word.spacing", text: "Advanced tokenization for Asian languages")
-                        FeatureRow(icon: "book.closed", text: "Integrated dictionary lookup")
-                        FeatureRow(icon: "eye", text: "Multiple theme support")
-                    }
-                    
-                    Spacer()
-                }
-                .padding()
+            VStack(spacing: 0) {
+                Image("AppIconImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                    .cornerRadius(35)
+                Spacer().frame(height: 10)
+                Text("LinguaGlass")
+                    .font(.system(size: 15))
+                Text("(0.1.0)")
+                    .font(.system(size: 15))
             }
+            .padding()
             .navigationTitle("About")
             .navigationBarItems(trailing: Button("Done") {
                 dismiss()
@@ -148,29 +137,68 @@ struct AcknowledgementsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("Acknowledgements")
+                    AcknowledgementRow(
+                        name: "Kantan Manga by Juan Meneses",
+                        description: "Heavily inspired LinguaGlass. Much code was borrowed/inspired from its github.",
+                        link: "https://github.com/juanj/KantanManga"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "SwiftyTesseract by Steven Sherry",
+                        description: "Vertical Japanese text recognition.",
+                        link: "https://github.com/SwiftyTesseract/SwiftyTesseract"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Mecab by Nara Institute of Science and Technology / Taku Kudou",
+                        description: "Japanese word tokenizer",
+                        link: "https://github.com/taku910/mecab"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Mecab-Swift by shinjukunian",
+                        description: "Mecab wrapper for Swift",
+                        link: "https://github.com/shinjukunian/Mecab-Swift"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "DongDu by shinjukunian",
+                        description: "Inspriation for Vietnamese word tokenization. Vietnamese syllable list taken from github.",
+                        link: "https://github.com/rockkhuya/DongDu"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "DongDu by Luu Tuan Anh",
+                        description: "Inspriation for Vietnamese word tokenization. Vietnamese syllable list taken from github.",
+                        link: "https://github.com/rockkhuya/DongDu"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "VNEDICT by Paul Denisowski",
+                        description: "Vietnamese wordlist used for tokenization",
+                        link: "http://www.denisowski.org/Vietnamese/Vietnamese.html"
+                    )
+                    
+                    Text("Dictionaries")
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    Text("LinguaGlass makes use of several open-source libraries and technologies:")
-                        .foregroundColor(.secondary)
-                    
                     AcknowledgementRow(
-                        name: "Apple Vision Framework",
-                        description: "For OCR text recognition capabilities",
-                        license: "Apple SDK License"
+                        name: "Jisho",
+                        description: "Japanese dictionary",
+                        link: "https://jisho.org/"
                     )
                     
                     AcknowledgementRow(
-                        name: "SwiftUI",
-                        description: "For the modern user interface",
-                        license: "Apple SDK License"
+                        name: "Naver Dictionary",
+                        description: "Korean dictionary",
+                        link: "https://korean.dict.naver.com/koendict/#/main"
                     )
                     
                     AcknowledgementRow(
-                        name: "WKWebView",
-                        description: "For web content rendering",
-                        license: "Apple SDK License"
+                        name: "Tra câu",
+                        description: "Vietnamese dictionary",
+                        link: "https://tracau.vn/"
                     )
                     
                     Spacer()
@@ -204,7 +232,7 @@ struct FeatureRow: View {
 struct AcknowledgementRow: View {
     let name: String
     let description: String
-    let license: String
+    let link: String?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -213,9 +241,11 @@ struct AcknowledgementRow: View {
             Text(description)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            Text(license)
-                .font(.caption)
-                .foregroundColor(.secondary)
+            if let link = link {
+                Text(link)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
         .padding(.vertical, 8)
     }
