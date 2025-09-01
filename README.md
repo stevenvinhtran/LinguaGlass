@@ -1,1 +1,1 @@
-Todo: add tutorial, app icon, about page, acknowledgements page, documentation, and comments
+Todo: add tutorial, documentation, and comments
