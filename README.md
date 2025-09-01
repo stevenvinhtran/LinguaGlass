@@ -11,7 +11,7 @@ LinguaGlass is a iOS application designed for immersive reading for language lea
   Screenshots and overlays an image on top the web view, enabling Apple's native live text feature.
 
 - **Tokenization and Dictionary Lookup**  
-  Extracted text is tokenized. Tap words to view dictionary entries from websites.
+  Extracted text is tokenized. Tap words to view dictionary entries from various websites.
 
 ## Supported Languages
 
