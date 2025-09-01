@@ -12,6 +12,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingAbout = false
     @State private var showingAcknowledgements = false
+    @Binding var showTutorial: Bool
     
     private var languageBinding: Binding<Language> {
         Binding(
@@ -62,6 +63,7 @@ struct SettingsView: View {
                     Button(action: { showingAbout = true }) {
                         HStack {
                             Text("About")
+                                .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 14, weight: .semibold))
@@ -75,6 +77,7 @@ struct SettingsView: View {
                     Button(action: { showingAcknowledgements = true }) {
                         HStack {
                             Text("Acknowledgements")
+                                .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 14, weight: .semibold))
@@ -86,6 +89,18 @@ struct SettingsView: View {
                     }
                 }
                 
+                // Replay Tutorial Section
+                Section {
+                    Button("Replay Tutorial") {
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            withAnimation {
+                                showTutorial = true
+                            }
+                        }
+                    }
+                }
+                
                 // Reset Section
                 Section {
                     Button("Reset to Defaults", role: .destructive) {
@@ -93,6 +108,13 @@ struct SettingsView: View {
                         viewModel.applyTheme()
                     }
                 }
+                
+                
+                Text("Contact the developer at linguaglass@gmail.com for bug reports or additional language support/feature requests.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .listRowBackground(Color.clear)
             }
             .navigationTitle("Settings")
             .navigationBarItems(
@@ -214,21 +236,6 @@ struct AcknowledgementsView: View {
 }
 
 // Supporting views
-struct FeatureRow: View {
-    let icon: String
-    let text: String
-    
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: icon)
-                .foregroundColor(.blue)
-                .frame(width: 24)
-            Text(text)
-            Spacer()
-        }
-    }
-}
-
 struct AcknowledgementRow: View {
     let name: String
     let description: String

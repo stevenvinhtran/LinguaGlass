@@ -43,6 +43,8 @@
 		5D393FCC2E62804300CB2FB1 /* TokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */; };
 		5D393FCE2E62831F00CB2FB1 /* TokenizerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */; };
 		5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */; };
+		5D3AEEED2E6621DC00ED324E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */; };
+		5D3AEEEF2E66220700ED324E /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEE2E66220700ED324E /* TutorialManager.swift */; };
 		5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */; };
 		5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */; };
 		5D7460592E63ECD400D5A5FF /* LiveTextImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */; };
@@ -86,6 +88,8 @@
 		5D393FCB2E62804300CB2FB1 /* TokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFooterView.swift; sourceTree = "<group>"; };
 		5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizerHandler.swift; sourceTree = "<group>"; };
 		5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		5D3AEEEE2E66220700ED324E /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanTokenizer.swift; sourceTree = "<group>"; };
 		5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWebView.swift; sourceTree = "<group>"; };
 		5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextImageView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		5D357B232E5F63C5000A59EA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5D3AEEEB2E6621CF00ED324E /* Tutorial */,
 				5D357B172E5F575B000A59EA /* MainView.swift */,
 				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
 				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
@@ -238,6 +243,15 @@
 				5D8D27682E62D08A004C806A /* JapaneseUtils.swift */,
 			);
 			path = JapaneseTokenizer;
+			sourceTree = "<group>";
+		};
+		5D3AEEEB2E6621CF00ED324E /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */,
+				5D3AEEEE2E66220700ED324E /* TutorialManager.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		5D6E1E3A2E6380B000414F9C /* KoreanTokenizer */ = {
@@ -390,8 +404,10 @@
 				5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */,
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5DC70BD92E64CF5400FA99AD /* TextCleaner.swift in Sources */,
+				5D3AEEED2E6621DC00ED324E /* TutorialView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
 				5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */,
+				5D3AEEEF2E66220700ED324E /* TutorialManager.swift in Sources */,
 				5D357B3E2E5F8961000A59EA /* HeaderView.swift in Sources */,
 				5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */,
 				5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */,
