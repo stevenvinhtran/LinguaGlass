@@ -68,6 +68,9 @@ struct DictionaryWebViewRepresentable: UIViewRepresentable {
     @Binding var progress: Double
     @Binding var isLoading: Bool
 
+    // Track the last URL we explicitly loaded from SwiftUI
+    private static var lastSearchURL: URL?
+
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: config)
@@ -97,14 +100,19 @@ struct DictionaryWebViewRepresentable: UIViewRepresentable {
                             options: .new,
                             context: nil)
 
+        // Initial load
         webView.load(URLRequest(url: url))
+        Self.lastSearchURL = url
+
         self.webView = webView
         return webView
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if uiView.url != url {
+        // Only reload if the incoming search URL is different from the last one we loaded
+        if Self.lastSearchURL != url {
             uiView.load(URLRequest(url: url))
+            Self.lastSearchURL = url
         }
     }
 

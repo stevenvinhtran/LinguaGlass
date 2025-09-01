@@ -48,7 +48,27 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
     private func setupWebView() {
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        
+
+        // Force-enable pinch zoom
+        webView.scrollView.pinchGestureRecognizer?.isEnabled = true
+
+        // Inject JS to override viewport meta tag restrictions
+        let js = """
+        var meta = document.querySelector('meta[name=viewport]');
+        if (meta) {
+            meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        } else {
+            meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
+            document.head.appendChild(meta);
+        }
+        """
+        let userScript = WKUserScript(source: js,
+                                      injectionTime: .atDocumentEnd,
+                                      forMainFrameOnly: true)
+        webView.configuration.userContentController.addUserScript(userScript)
+
         // Observe loading state and progress
         webView.publisher(for: \.isLoading)
             .receive(on: DispatchQueue.main)
