@@ -189,12 +189,6 @@ struct AcknowledgementsView: View {
                     )
                     
                     AcknowledgementRow(
-                        name: "DongDu by shinjukunian",
-                        description: "Inspriation for Vietnamese word tokenization. Vietnamese syllable list taken from github.",
-                        link: "https://github.com/rockkhuya/DongDu"
-                    )
-                    
-                    AcknowledgementRow(
                         name: "DongDu by Luu Tuan Anh",
                         description: "Inspriation for Vietnamese word tokenization. Vietnamese syllable list taken from github.",
                         link: "https://github.com/rockkhuya/DongDu"
