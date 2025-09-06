@@ -4,6 +4,8 @@ LinguaGlass is a iOS application designed for immersive reading for language lea
 
 Note: This is one of my first coding projects, so the code may be messy and unclear.
 
+Privacy Policy: LinguaGlass does not collect any data from users.
+
 Contact the developer at linguaglass@gmail.com for bug reports or additional language support/feature requests.
 
 ## Features
