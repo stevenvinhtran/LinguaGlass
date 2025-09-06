@@ -145,7 +145,7 @@ struct AboutView: View {
                 Spacer().frame(height: 10)
                 Text("LinguaGlass")
                     .font(.system(size: 15))
-                Text("(0.1.0)")
+                Text("(1.0.0)")
                     .font(.system(size: 15))
             }
             .padding()
@@ -198,6 +198,12 @@ struct AcknowledgementsView: View {
                         name: "VNEDICT by Paul Denisowski",
                         description: "Vietnamese wordlist used for tokenization",
                         link: "http://www.denisowski.org/Vietnamese/Vietnamese.html"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Saint☆Young Men by Hikaru Nakamura - Creative Commons",
+                        description: "Manga used in App Store images",
+                        link: nil
                     )
                     
                     Text("Dictionaries")
