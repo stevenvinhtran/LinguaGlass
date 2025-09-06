@@ -27,3 +27,4 @@ Clone the repo and open in Xcode:
 
 ```bash
 git clone https://github.com/stevenvinhtran/LinguaGlass.git
+```
