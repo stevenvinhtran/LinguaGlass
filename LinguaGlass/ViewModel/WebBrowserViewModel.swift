@@ -33,6 +33,9 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
     private let persistenceService: WebPersistenceServiceProtocol
     private var currentSearchTask: Task<Void, Never>?
     
+    // Store the last raw query the user entered
+    private var lastRawQuery: String = ""
+    
     init(persistenceService: WebPersistenceServiceProtocol = WebPersistenceService()) {
         self.persistenceService = persistenceService
         
@@ -64,32 +67,24 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
             document.head.appendChild(meta);
         }
         """
-        let userScript = WKUserScript(source: js,
-                                      injectionTime: .atDocumentEnd,
-                                      forMainFrameOnly: true)
+        let userScript = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(userScript)
 
         // Observe loading state and progress
         webView.publisher(for: \.isLoading)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] isLoading in
-                self?.state.isLoading = isLoading
-            }
+            .sink { [weak self] isLoading in self?.state.isLoading = isLoading }
             .store(in: &cancellables)
         
         webView.publisher(for: \.estimatedProgress)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] progress in
-                self?.state.estimatedProgress = progress
-            }
+            .sink { [weak self] progress in self?.state.estimatedProgress = progress }
             .store(in: &cancellables)
         
         // Observe URL changes to update search bar
         webView.publisher(for: \.url)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] url in
-                self?.updateSearchTextFromURL(url)
-            }
+            .sink { [weak self] url in self?.updateSearchTextFromURL(url) }
             .store(in: &cancellables)
     }
     
@@ -107,76 +102,34 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
         guard !searchText.isEmpty else { return }
         
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        lastRawQuery = query
         
         // Cancel any previous search task
         currentSearchTask?.cancel()
         
-        // Create new search task
         currentSearchTask = Task {
-            // Check if it looks like a URL (contains dot, no spaces)
-            if self.isPotentialURL(query) {
-                // Try to ping the URL first
-                if await self.pingURL(query) {
-                    // URL is valid, load it
-                    if let url = self.parseURL(from: query) {
-                        await MainActor.run {
-                            self.loadURL(url)
-                        }
-                    }
-                    return
-                }
-            }
-            
-            // If URL ping failed or doesn't look like URL, do Google search
-            await MainActor.run {
-                self.search(query: query)
+            if let url = URL(string: query), isValidHTTPURL(url) {
+                await MainActor.run { self.loadURL(url) }
+            } else if isBareDomain(query), let url = URL(string: "https://\(query)") {
+                await MainActor.run { self.loadURL(url) }
+            } else {
+                await MainActor.run { self.search(query: query) }
             }
         }
     }
     
-    private func isPotentialURL(_ text: String) -> Bool {
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // Basic checks: contains dot, no spaces, not starting/ending with dot
-        return !trimmed.isEmpty &&
-               trimmed.contains(".") &&
-               !trimmed.contains(" ") &&
-               !trimmed.hasPrefix(".") &&
-               !trimmed.hasSuffix(".")
+    private func isValidHTTPURL(_ url: URL) -> Bool {
+        guard let comps = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let scheme = comps.scheme?.lowercased(),
+              (scheme == "http" || scheme == "https"),
+              let host = comps.host, !host.isEmpty
+        else { return false }
+        return true
     }
     
-    private func pingURL(_ text: String) async -> Bool {
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // Create URL (add https:// if missing)
-        var urlString = trimmed
-        if !urlString.contains("://") {
-            urlString = "https://\(urlString)"
-        }
-        
-        guard let url = URL(string: urlString) else {
-            return false
-        }
-        
-        // Create URLRequest with short timeout
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 3.0 // 3 second timeout
-        request.httpMethod = "HEAD" // HEAD request is faster than GET
-        
-        do {
-            // Try to make a request
-            let (_, response) = try await URLSession.shared.data(for: request)
-            
-            // Check if we got a successful HTTP response (200-399)
-            if let httpResponse = response as? HTTPURLResponse {
-                return (200...399).contains(httpResponse.statusCode)
-            }
-            
-            return false
-        } catch {
-            // Request failed - not a valid URL
-            return false
-        }
+    private func isBareDomain(_ text: String) -> Bool {
+        let pattern = #"^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,24}$"#
+        return text.range(of: pattern, options: .regularExpression) != nil
     }
     
     private func updateSearchTextFromURL(_ url: URL?) {
@@ -188,38 +141,16 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
         searchText = url.absoluteString
     }
     
-    private func parseURL(from text: String) -> URL? {
-        var urlString = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // Add https:// if missing
-        if !urlString.contains("://") {
-            urlString = "https://\(urlString)"
-        }
-        
-        return URL(string: urlString)
-    }
-    
     func loadURL(_ url: URL?) {
         guard let url = url else { return }
         let request = URLRequest(url: url)
         webView.load(request)
     }
     
-    func goBack() {
-        webView.goBack()
-    }
-    
-    func goForward() {
-        webView.goForward()
-    }
-    
-    func refresh() {
-        webView.reload()
-    }
-    
-    func stopLoading() {
-        webView.stopLoading()
-    }
+    func goBack() { webView.goBack() }
+    func goForward() { webView.goForward() }
+    func refresh() { webView.reload() }
+    func stopLoading() { webView.stopLoading() }
     
     func search(query: String) {
         let searchQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
@@ -261,5 +192,29 @@ extension WebBrowserViewModel: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         updateNavigationState()
         state.currentURL = webView.url
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        handleLoadError(error)
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        handleLoadError(error)
+    }
+    
+    private func handleLoadError(_ error: Error) {
+        let nsError = error as NSError
+        if nsError.domain == NSURLErrorDomain {
+            switch nsError.code {
+            case NSURLErrorCannotFindHost,
+                 NSURLErrorCannotConnectToHost,
+                 NSURLErrorDNSLookupFailed,
+                 NSURLErrorNotConnectedToInternet:
+                // Use the original raw query, not the transformed URL
+                search(query: lastRawQuery)
+            default:
+                break
+            }
+        }
     }
 }
