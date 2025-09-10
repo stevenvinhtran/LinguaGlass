@@ -1,7 +1,6 @@
 # LinguaGlass
 
-
-[![AppStore](/img/appstore.svg)](https://apps.apple.com/app/linguaglass/id6752125620)
+[iOS App Store Link](https://apps.apple.com/app/linguaglass/id6752125620)
 
 LinguaGlass is a iOS application designed for immersive reading for language learners. Extract text from the web and tap any word to reveal its meaning. Heavily inspired by [KantanManga](https://github.com/juanj/KantanManga). Primarily built to enable the language learners to read manga/manhwa easier.
 
