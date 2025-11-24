@@ -47,7 +47,7 @@ struct SettingsView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                     
-                    Text("Note: Japanese tokenization and vertical OCR may be inaccurate. If OCR results are poor, use Live Text mode. If tokenization is incorrect, use “Search All” - Jisho.org applies its own tokenization.")
+                    Text("Note: OCR for vertical scripts and tokenization for Japanese may be inaccurate.")
                         .font(.system(size: 7, weight: .light))
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)

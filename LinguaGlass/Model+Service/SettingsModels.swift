@@ -12,6 +12,15 @@ enum Language: String, CaseIterable, Identifiable, Codable {
     case japaneseHorizontal = "Japanese (Horizontal)"
     case korean = "Korean"
     case vietnamese = "Vietnamese"
+    case spanish = "Spanish"
+    case french = "French"
+    case portuguese = "Portuguese"
+    case chineseSimplifiedVertical = "Chinese (Simplified, Vertical)"
+    case chineseSimplifiedHorizontal = "Chinese (Simplified, Horizontal)"
+    case chineseTraditionalVertical = "Chinese (Traditional, Vertical)"
+    case chineseTraditionalHorizontal = "Chinese (Traditional, Horizontal)"
+    case italian = "Italian"
+    case romanian = "Romanian"
     
     var id: String { rawValue }
 }

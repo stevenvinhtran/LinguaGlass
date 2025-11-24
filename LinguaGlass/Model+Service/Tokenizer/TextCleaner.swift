@@ -19,9 +19,9 @@ extension String {
         
         var notAllowed = CharacterSet.decimalDigits
         
-        // Set notAllowed based on language
+        // Configure notAllowed based on language
         switch language {
-        case .japaneseHorizontal, .japaneseVertical, .korean:
+        case .japaneseHorizontal, .japaneseVertical, .korean, .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
             // strip ASCII letters + digits + punctuation
             let asciiLetters = CharacterSet(charactersIn:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
             notAllowed.formUnion(asciiLetters)
@@ -30,21 +30,27 @@ extension String {
         case .vietnamese:
             // strip digits + only a few symbols, keep Latin letters
             notAllowed.formUnion(CharacterSet(charactersIn:"-_/\\()|〔〕[]{}%:<>"))
+            
+        case .spanish, .french, .portuguese, .italian, .romanian:
+            // For these languages, do not strip letters or punctuation beyond digits
+            break
         }
         
         // Filter out forbidden scalars
         let filtered = result.unicodeScalars.filter { !notAllowed.contains($0) }
         result = String(String.UnicodeScalarView(filtered))
         
-        // Split on any whitespace, drop empties, re-join with exactly one space
+        // Split on any whitespace, drop empties, re-join with exactly one space or none based on language
         switch language {
-        case .japaneseVertical, .japaneseHorizontal:
+        case .japaneseVertical, .japaneseHorizontal, .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
             let parts = result.split(whereSeparator: { $0.isWhitespace })
             result = parts.joined(separator: "")
-        case .korean, .vietnamese:
+            
+        case .korean, .vietnamese, .spanish, .french, .portuguese, .italian, .romanian:
             let parts = result.split(whereSeparator: { $0.isWhitespace })
             result = parts.joined(separator: " ")
         }
+        
         return result
     }
 }

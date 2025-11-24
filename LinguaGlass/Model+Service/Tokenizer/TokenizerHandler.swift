@@ -6,21 +6,28 @@
 //
 
 import SwiftUI
+import NaturalLanguage
 
 struct TokenizerHandler {
     static func makeTokenizer(using settings: AppSettings) throws -> TokenizerService {
         switch settings.selectedLanguage {
         case .japaneseVertical, .japaneseHorizontal:
             return try JapaneseTokenizer()
-
+            
         case .korean:
             return KoreanTokenizer()
-
+            
         case .vietnamese:
             return try VietnameseTokenizer()
+            
+        case .spanish, .french, .portuguese, .italian, .romanian:
+            return LatinLanguageTokenizer(language: settings.selectedLanguage)
+            
+        case .chineseSimplifiedHorizontal, .chineseTraditionalHorizontal, .chineseSimplifiedVertical, .chineseTraditionalVertical:
+            return ChineseTokenizer(language: settings.selectedLanguage)
         }
     }
-
+    
     static func tokenize(
         _ text: String,
         headerViewModel: HeaderViewModel,

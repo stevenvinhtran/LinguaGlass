@@ -18,13 +18,24 @@ class OCRService: ImageOCR {
     }
     
     func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void) {
-        let tesseractOCR = TesseractOCR()
-        
         switch settings.selectedLanguage {
-        case .japaneseVertical:
-            tesseractOCR.recognize(image: image, completion)
+        case .japaneseVertical, .chineseSimplifiedVertical, .chineseTraditionalVertical:
+            // Map app Language to TesseractOCR.Language and use Tesseract only for vertical scripts
+            let tesseractLanguage: TesseractOCR.Language?
+            switch settings.selectedLanguage {
+            case .japaneseVertical: tesseractLanguage = .japaneseVertical
+            case .chineseSimplifiedVertical: tesseractLanguage = .chineseSimplifiedVertical
+            case .chineseTraditionalVertical: tesseractLanguage = .chineseTraditionalVertical
+            default: tesseractLanguage = nil
+            }
+            if let tesseractLanguage {
+                let tesseractOCR = TesseractOCR(language: tesseractLanguage)
+                tesseractOCR.recognize(image: image, completion)
+            } else {
+                recognizeWithVision(image: image, completion: completion)
+            }
             
-        case .japaneseHorizontal, .korean, .vietnamese:
+        default:
             recognizeWithVision(image: image, completion: completion)
         }
     }
@@ -59,6 +70,7 @@ class OCRService: ImageOCR {
         case .japaneseHorizontal:
             request.recognitionLanguages = ["ja"]
             request.usesLanguageCorrection = true
+            request.recognitionLevel = .accurate
             
         case .korean:
             request.recognitionLanguages = ["ko"]
@@ -67,10 +79,48 @@ class OCRService: ImageOCR {
         case .vietnamese:
             request.recognitionLanguages = ["vi"]
             request.usesLanguageCorrection = true
+
+        case .spanish:
+            request.recognitionLanguages = ["es"]
+            request.usesLanguageCorrection = true
             
-        case .japaneseVertical:
-            // Shouldn't reach here, but fallback
-            request.recognitionLanguages = ["ja"]
+        case .french:
+            request.recognitionLanguages = ["fr"]
+            request.usesLanguageCorrection = true
+            
+        case .portuguese:
+            request.recognitionLanguages = ["pt"]
+            request.usesLanguageCorrection = true
+            
+        case .chineseSimplifiedHorizontal:
+            request.recognitionLanguages = ["zh-Hans"]
+            request.usesLanguageCorrection = true
+            
+        case .chineseTraditionalHorizontal:
+            request.recognitionLanguages = ["zh-Hant"]
+            request.usesLanguageCorrection = true
+            
+        case .japaneseVertical, .chineseSimplifiedVertical, .chineseTraditionalVertical:
+            // These cases should not reach here because they use TesseractOCR,
+            // but fallback to Vision with base language codes if they do
+            switch language {
+            case .japaneseVertical:
+                request.recognitionLanguages = ["ja"]
+            case .chineseSimplifiedVertical:
+                request.recognitionLanguages = ["zh-Hans"]
+            case .chineseTraditionalVertical:
+                request.recognitionLanguages = ["zh-Hant"]
+            default:
+                break
+            }
+            request.usesLanguageCorrection = true
+            
+        case .italian:
+            request.recognitionLanguages = ["it"]
+            request.usesLanguageCorrection = true
+            
+        case .romanian:
+            request.recognitionLanguages = ["ro"]
             request.usesLanguageCorrection = true
         }
         

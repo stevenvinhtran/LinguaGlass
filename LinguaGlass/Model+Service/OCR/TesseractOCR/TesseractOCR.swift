@@ -1,4 +1,4 @@
-//
+//  I modified this file significantly
 //  TesseractOCR.swift
 //  MangaReader
 //
@@ -15,10 +15,31 @@ class TesseractOCR: ImageOCR {
         case recognitionError
     }
     
-    private let tesseract = Tesseract(language: .custom("jpn_vert"))
+    enum Language {
+        case japaneseVertical
+        case chineseSimplifiedVertical
+        case chineseTraditionalVertical
+    }
+    
+    private let tesseract: Tesseract
+    private let pageSegmentationMode: PageSegmentationMode
+    
+    init(language: Language) {
+        switch language {
+        case .japaneseVertical:
+            self.tesseract = Tesseract(language: .custom("jpn_vert"))
+            self.pageSegmentationMode = .singleBlockVerticalText
+        case .chineseSimplifiedVertical:
+            self.tesseract = Tesseract(language: .custom("chi_sim_vert"))
+            self.pageSegmentationMode = .singleBlockVerticalText
+        case .chineseTraditionalVertical:
+            self.tesseract = Tesseract(language: .custom("chi_tra_vert"))
+            self.pageSegmentationMode = .singleBlockVerticalText
+        }
+    }
 
     func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void) {
-        tesseract.pageSegmentationMode = .singleBlockVerticalText
+        tesseract.pageSegmentationMode = pageSegmentationMode
         DispatchQueue.global(qos: .utility).async {
             let result: Result<String, Tesseract.Error> = self.tesseract.performOCR(on: image)
             switch result {

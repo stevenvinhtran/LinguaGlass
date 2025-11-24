@@ -1,0 +1,39 @@
+//
+//  ChineseTokenizer.swift
+//  LinguaGlass
+//
+//  Created by Steven Tran on 11/24/25.
+//
+
+import Foundation
+import NaturalLanguage
+
+
+struct ChineseTokenizer: TokenizerService {
+    let language: Language
+    
+    func tokenize(text: String) async throws -> [Token] {
+        let nlLanguage: NLLanguage
+        switch language {
+        case .chineseSimplifiedHorizontal, .chineseSimplifiedVertical:
+            nlLanguage = .simplifiedChinese
+        case .chineseTraditionalHorizontal, .chineseTraditionalHorizontal:
+            nlLanguage = .traditionalChinese
+        default:
+            nlLanguage = .undetermined
+        }
+        
+        let nlTokenizer = NLTokenizer(unit: .word)
+        nlTokenizer.string = text
+        nlTokenizer.setLanguage(nlLanguage)
+        
+        var tokens: [Token] = []
+        nlTokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { tokenRange, _ in
+            let word = String(text[tokenRange])
+            tokens.append(Token(text: word))
+            return true
+        }
+        
+        return tokens
+    }
+}

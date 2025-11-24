@@ -39,11 +39,11 @@ final class TokenFooterViewModel: ObservableObject {
         
         let searchText: String
         switch settingsViewModel.settings.selectedLanguage {
-        case .japaneseVertical, .japaneseHorizontal:
-            // Japanese concatenates all tokens without spaces
+        case .japaneseVertical, .japaneseHorizontal, .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
+            // Japanese and Chinese concatenates all tokens without spaces
             searchText = tokens.map { $0.text }.joined()
-        case .korean, .vietnamese:
-            // Korean and Vietnamese join with spaces
+        default:
+            // Others join with spaces
             searchText = tokens.map { $0.text }.joined(separator: " ")
         }
         
