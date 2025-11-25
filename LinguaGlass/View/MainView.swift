@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct MainView: View {
     @StateObject private var webViewModel = WebBrowserViewModel()
@@ -86,36 +85,22 @@ struct MainView: View {
     }
 }
 
-final class HostingController<Content: View>: UIHostingController<Content> {
-    
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        // Keep the home indicator visible so the first swipe just dims it
-        return false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // Require an extra swipe by delaying system gestures
-        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
-    }
-    
-    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-        // Defer system gestures on the bottom edge
-        return [.bottom]
-    }
-}
+struct HomeIndicatorAutoHidden<Content: View>: UIViewControllerRepresentable {
+    var content: Content
 
-struct UIKitWrapper<Content: View>: UIViewControllerRepresentable {
-    let content: Content
-    
-    init(@ViewBuilder _ content: () -> Content) {
+    init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        HostingController(rootView: content)
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-}
 
+    func makeUIViewController(context: Context) -> Hosting<Content> {
+        Hosting(rootView: content)
+    }
+
+    func updateUIViewController(_ uiViewController: Hosting<Content>, context: Context) {
+        uiViewController.rootView = content
+    }
+
+    final class Hosting<C: View>: UIHostingController<C> {
+        override var prefersHomeIndicatorAutoHidden: Bool { true }
+    }
+}
