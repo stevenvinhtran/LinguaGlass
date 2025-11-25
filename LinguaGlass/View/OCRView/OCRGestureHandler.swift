@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+private final class PressGestureRecognizer: UILongPressGestureRecognizer {
+    override init(target: Any?, action: Selector?) {
+        super.init(target: target, action: action)
+        minimumPressDuration = 0
+        allowableMovement = .greatestFiniteMagnitude
+        cancelsTouchesInView = true
+    }
+}
+
 struct OCRGestureHandler: UIViewRepresentable {
     @ObservedObject var headerViewModel: HeaderViewModel
     var onSelectionComplete: (CGRect) -> Void
@@ -16,14 +25,14 @@ struct OCRGestureHandler: UIViewRepresentable {
         view.backgroundColor = .clear
         view.isUserInteractionEnabled = true
         
-        // Add gesture recognizer
-        let dragGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleDrag(_:)))
-        dragGesture.delegate = context.coordinator
-        view.addGestureRecognizer(dragGesture)
-        
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         tapGesture.delegate = context.coordinator
         view.addGestureRecognizer(tapGesture)
+        
+        // Unified immediate press+drag recognizer
+        let pressPan = PressGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handlePressPan(_:)))
+        pressPan.delegate = context.coordinator
+        view.addGestureRecognizer(pressPan)
         
         return view
     }
@@ -47,31 +56,54 @@ struct OCRGestureHandler: UIViewRepresentable {
             self.parent = parent
         }
         
-        @objc func handleDrag(_ gesture: UIPanGestureRecognizer) {
+        private func beginSelection(at location: CGPoint) {
+            startPoint = location
+            parent.headerViewModel.startOCRSelection(at: location)
+        }
+        
+        private func updateSelection(to location: CGPoint) {
+            if startPoint != nil {
+                parent.headerViewModel.updateOCRSelection(to: location)
+            }
+        }
+        
+        private func endSelection(at location: CGPoint) {
+            defer { startPoint = nil }
+
+            // If we have a valid large-enough rect, complete and deactivate
+            if let rect = parent.headerViewModel.getSelectionRect(), rect.width >= 20 && rect.height >= 20 {
+                parent.onSelectionComplete(rect)
+                parent.headerViewModel.completeOCRSelection()
+                return
+            }
+
+            // Distinguish tap vs. small drag using movement distance
+            if let start = startPoint {
+                let dx = location.x - start.x
+                let dy = location.y - start.y
+                let movement = sqrt(dx*dx + dy*dy)
+                let tapTolerance: CGFloat = 8
+                if movement <= tapTolerance {
+                    // Treat as tap: clear selection but keep OCR active
+                    parent.headerViewModel.clearOCRSelection()
+                    return
+                }
+            }
+
+            // Too small after a drag: clear and deactivate OCR
+            parent.headerViewModel.cancelOCRSelection()
+        }
+        
+        @objc func handlePressPan(_ gesture: UILongPressGestureRecognizer) {
             guard parent.headerViewModel.isOCRModeActive else { return }
-            
             let location = gesture.location(in: gesture.view)
-            
             switch gesture.state {
             case .began:
-                startPoint = location
-                parent.headerViewModel.startOCRSelection(at: location)
-                
+                beginSelection(at: location)
             case .changed:
-                if let start = startPoint {
-                    parent.headerViewModel.updateOCRSelection(to: location)
-                }
-                
+                updateSelection(to: location)
             case .ended, .cancelled:
-                if let start = startPoint, let rect = parent.headerViewModel.getSelectionRect() {
-                    // Only complete if selection is large enough
-                    if rect.width > 20 && rect.height > 20 {
-                        parent.onSelectionComplete(rect)
-                    }
-                }
-                startPoint = nil
-                parent.headerViewModel.completeOCRSelection()
-                
+                endSelection(at: location)
             default:
                 break
             }
@@ -85,8 +117,9 @@ struct OCRGestureHandler: UIViewRepresentable {
         }
         
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-            // Allow simultaneous recognition with web view gestures
-            return true
+            // While in OCR mode, prefer our gestures to avoid delays from competing recognizers
+            return !parent.headerViewModel.isOCRModeActive
         }
     }
 }
+

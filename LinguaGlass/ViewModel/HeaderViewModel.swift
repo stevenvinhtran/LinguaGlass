@@ -91,6 +91,10 @@ class HeaderViewModel: ObservableObject {
         ocrMode = .inactive
     }
     
+    func clearOCRSelection() {
+        ocrMode = .inactive
+    }
+    
     func getSelectionRect() -> CGRect? {
         if case .selecting(let start, let current) = ocrMode {
             let origin = CGPoint(x: min(start.x, current.x), y: min(start.y, current.y))

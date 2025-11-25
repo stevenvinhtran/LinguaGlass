@@ -12,12 +12,14 @@ struct OCRSelectionOverlayView: View {
     
     var body: some View {
         ZStack {
-            if let rect = selectionRect, rect.width > 5, rect.height > 5 {
-                // Selection rectangle
+            if let rect = selectionRect {
+                let minSize: CGFloat = 1
+                let clampedWidth = max(rect.width, minSize)
+                let clampedHeight = max(rect.height, minSize)
                 Rectangle()
                     .stroke(Color.blue, lineWidth: 2)
                     .background(Color.blue.opacity(0.2))
-                    .frame(width: rect.width, height: rect.height)
+                    .frame(width: clampedWidth, height: clampedHeight)
                     .position(x: rect.midX, y: rect.midY)
             }
         }
