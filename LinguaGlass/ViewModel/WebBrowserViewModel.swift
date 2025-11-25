@@ -54,6 +54,7 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
 
         // Force-enable pinch zoom
         webView.scrollView.pinchGestureRecognizer?.isEnabled = true
+        webView.scrollView.scrollsToTop = false
 
         // Inject JS to override viewport meta tag restrictions
         let js = """

@@ -90,6 +90,7 @@ struct DictionaryWebViewRepresentable: UIViewRepresentable {
 
         // Allow pinch zoom
         webView.scrollView.pinchGestureRecognizer?.isEnabled = true
+        webView.scrollView.scrollsToTop = false
 
         // Inject JS to override viewport meta tag restrictions
         let js = """
