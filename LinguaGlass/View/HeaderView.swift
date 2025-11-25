@@ -19,7 +19,7 @@ struct HeaderView: View {
                 // OCR Selection Mode Button
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.3)) {
-                        viewModel.toggleOCRMode()
+                        viewModel.toggleOCRMode(for: webViewModel.webView)
                     }
                 }) {
                     Image(systemName: "viewfinder")

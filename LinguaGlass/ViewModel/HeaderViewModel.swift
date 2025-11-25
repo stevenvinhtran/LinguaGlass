@@ -28,10 +28,16 @@ class HeaderViewModel: ObservableObject {
         }
     }
     
-    func toggleOCRMode() {
+    func toggleOCRMode(for webView: WKWebView) {
         isOCRModeActive.toggle()
+        
         if isOCRModeActive {
-            isLiveTextModeActive = false
+            if isLiveTextModeActive {
+                isLiveTextModeActive = false
+                liveTextImage = nil
+                webView.scrollView.isScrollEnabled = true
+                webView.isUserInteractionEnabled = true
+            }
         }
     }
     
@@ -44,6 +50,9 @@ class HeaderViewModel: ObservableObject {
         } else {
             isLiveTextModeActive = true
             isOCRModeActive = false
+
+            // Clear any stale image before capturing a new snapshot
+            self.liveTextImage = nil
 
             // Capture screenshot
             let config = WKSnapshotConfiguration()
@@ -91,3 +100,4 @@ class HeaderViewModel: ObservableObject {
         return nil
     }
 }
+
