@@ -42,6 +42,26 @@ struct WebBrowserView: View {
                 }
             }
         }
+        .onChange(of: settingsViewModel.settings.newTabBehavior, initial: true) { _, behavior in
+            viewModel.newTabBehavior = behavior
+        }
+        .onAppear {
+            viewModel.newTabBehavior = settingsViewModel.settings.newTabBehavior
+        }
+        .alert("\(viewModel.state.currentURL?.absoluteString ?? "This page") wants to open a link in a new tab. Open here?", isPresented: $viewModel.showNewTabConfirmation) {
+            Button("Cancel", role: .cancel) {
+                viewModel.cancelOpenPopup()
+            }
+            Button("Open") {
+                viewModel.confirmOpenPopup()
+            }
+        } message: {
+            if let url = viewModel.pendingPopupURL {
+                Text("\(url.absoluteString)")
+            } else {
+                Text("Unknown destination")
+            }
+        }
     }
     
     private func captureOCRImage(from rect: CGRect) {
@@ -200,3 +220,4 @@ struct NavigationControlsView: View {
         .font(.system(size: 18, weight: .semibold))
     }
 }
+

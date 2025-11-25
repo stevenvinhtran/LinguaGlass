@@ -34,6 +34,16 @@ struct SettingsView: View {
             }
         )
     }
+
+    private var newTabBehaviorBinding: Binding<NewTabBehavior> {
+        Binding(
+            get: { viewModel.settings.newTabBehavior },
+            set: { newBehavior in
+                viewModel.settings.newTabBehavior = newBehavior
+                viewModel.saveSettings(viewModel.settings)
+            }
+        )
+    }
     
     var body: some View {
         NavigationView {
@@ -48,7 +58,7 @@ struct SettingsView: View {
                     .pickerStyle(MenuPickerStyle())
                     
                     Text("Note: OCR for vertical scripts and tokenization for Japanese may be inaccurate.")
-                        .font(.system(size: 7, weight: .light))
+                        .font(.system(size: 10, weight: .light))
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -61,6 +71,16 @@ struct SettingsView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                }
+                
+                // Link Handling Section
+                Section(header: Text("Links & Tabs")) {
+                    Picker("Open new‑tab links", selection: newTabBehaviorBinding) {
+                        ForEach(NewTabBehavior.allCases) { behavior in
+                            Text(behavior.rawValue).tag(behavior)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
                 
                 // Info Section
@@ -178,7 +198,7 @@ struct AcknowledgementsView: View {
                     
                     AcknowledgementRow(
                         name: "Mecab by Nara Institute of Science and Technology / Taku Kudou",
-                        description: "Japanese word tokenizer",
+                        description: "Japanese word tokenizer and furigana converter",
                         link: "https://github.com/taku910/mecab"
                     )
                     
@@ -201,31 +221,73 @@ struct AcknowledgementsView: View {
                     )
                     
                     AcknowledgementRow(
+                        name: "WWJavaScriptContext_Pinyin by William Weng",
+                        description: "Chinese pinyin converter",
+                        link: "https://github.com/William-Weng/WWJavaScriptContext_Pinyin"
+                    )
+                    
+                    AcknowledgementRow(
                         name: "Saint☆Young Men by Hikaru Nakamura - Creative Commons",
                         description: "Manga used in App Store images",
                         link: nil
                     )
                     
-                    Text("Dictionaries")
+                    Text("Dictionaries -> English")
                         .font(.title2)
                         .fontWeight(.bold)
                     
                     AcknowledgementRow(
                         name: "Jisho",
-                        description: "Japanese dictionary",
+                        description: "Japanese-English dictionary",
                         link: "https://jisho.org/"
                     )
                     
                     AcknowledgementRow(
                         name: "Naver Dictionary",
-                        description: "Korean dictionary",
+                        description: "Korean-English dictionary",
                         link: "https://korean.dict.naver.com/koendict/#/main"
                     )
                     
                     AcknowledgementRow(
                         name: "Tra câu",
-                        description: "Vietnamese dictionary",
+                        description: "Vietnamese-English dictionary",
                         link: "https://tracau.vn/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "SpanishDict",
+                        description: "Spanish-English dictionary",
+                        link: "https://www.spanishdict.com/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "FrenchDictionary.com",
+                        description: "French-English dictionary",
+                        link: "https://www.frenchdictionary.com/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Reverso (Portuguese)",
+                        description: "Portuguese-English dictionary",
+                        link: "https://dictionary.reverso.net/portuguese-english/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Reverso (Italian)",
+                        description: "Italian-English dictionary",
+                        link: "https://dictionary.reverso.net/italian-english/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Reverso (Romanian)",
+                        description: "Romanian-English dictionary",
+                        link: "https://dictionary.reverso.net/romanian-english/"
+                    )
+                    
+                    AcknowledgementRow(
+                        name: "Hanzii",
+                        description: "Chinese-English dictionary",
+                        link: "https://hanzii.net/"
                     )
                     
                     Spacer()
@@ -262,3 +324,4 @@ struct AcknowledgementRow: View {
         .padding(.vertical, 8)
     }
 }
+

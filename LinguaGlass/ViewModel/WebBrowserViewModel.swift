@@ -28,6 +28,11 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
     @Published var searchText: String = ""
     @Published private(set) var history: [WebPage] = []
     
+    // New-window (target=_blank) handling
+    @Published var pendingPopupURL: URL? = nil
+    @Published var showNewTabConfirmation: Bool = false
+    @Published var newTabBehavior: NewTabBehavior = .ask
+    
     let webView: WKWebView
     private var cancellables = Set<AnyCancellable>()
     private let persistenceService: WebPersistenceServiceProtocol
@@ -119,6 +124,18 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
         }
     }
     
+    func confirmOpenPopup() {
+        guard let url = pendingPopupURL else { return }
+        showNewTabConfirmation = false
+        pendingPopupURL = nil
+        loadURL(url)
+    }
+
+    func cancelOpenPopup() {
+        showNewTabConfirmation = false
+        pendingPopupURL = nil
+    }
+    
     private func isValidHTTPURL(_ url: URL) -> Bool {
         guard let comps = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let scheme = comps.scheme?.lowercased(),
@@ -178,6 +195,26 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
         persistenceService.saveHistory(history)
         persistenceService.saveLastURL(url)
     }
+    
+    // MARK: - WKUIDelegate
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        // Intercept links that request a new window (e.g., target=_blank)
+        if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
+            switch newTabBehavior {
+            case .ask:
+                pendingPopupURL = url
+                showNewTabConfirmation = true
+                return nil
+            case .alwaysOpen:
+                loadURL(url)
+                return nil
+            case .neverOpen:
+                // Do nothing (cancel opening a new window)
+                return nil
+            }
+        }
+        return nil
+    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -219,3 +256,4 @@ extension WebBrowserViewModel: WKNavigationDelegate {
         }
     }
 }
+

@@ -33,7 +33,16 @@ enum AppTheme: String, CaseIterable, Identifiable, Codable {
     var id: String { rawValue }
 }
 
+enum NewTabBehavior: String, CaseIterable, Identifiable, Codable {
+    case ask = "Ask before opening"
+    case alwaysOpen = "Always open"
+    case neverOpen = "Never open"
+    
+    var id: String { rawValue }
+}
+
 struct AppSettings: Codable {
     var selectedLanguage: Language = .japaneseVertical
     var appTheme: AppTheme = .system
+    var newTabBehavior: NewTabBehavior = .ask
 }
