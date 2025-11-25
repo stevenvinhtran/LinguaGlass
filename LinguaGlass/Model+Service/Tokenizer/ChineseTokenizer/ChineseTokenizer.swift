@@ -7,7 +7,8 @@
 
 import Foundation
 import NaturalLanguage
-
+import WWJavaScriptContext
+import WWJavaScriptContext_Pinyin
 
 struct ChineseTokenizer: TokenizerService {
     let language: Language
@@ -17,7 +18,7 @@ struct ChineseTokenizer: TokenizerService {
         switch language {
         case .chineseSimplifiedHorizontal, .chineseSimplifiedVertical:
             nlLanguage = .simplifiedChinese
-        case .chineseTraditionalHorizontal, .chineseTraditionalHorizontal:
+        case .chineseTraditionalHorizontal, .chineseTraditionalVertical:
             nlLanguage = .traditionalChinese
         default:
             nlLanguage = .undetermined
@@ -30,7 +31,8 @@ struct ChineseTokenizer: TokenizerService {
         var tokens: [Token] = []
         nlTokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { tokenRange, _ in
             let word = String(text[tokenRange])
-            tokens.append(Token(text: word))
+            let ruby = ChineseUtils.getPinyin(text: word)
+            tokens.append(Token(text: word, rubyText: ruby.isEmpty ? nil : ruby))
             return true
         }
         

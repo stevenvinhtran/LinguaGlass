@@ -12,17 +12,17 @@ struct Token: Identifiable, Hashable {
     let text: String
     let dictionaryForm: String?
     let reading: String?
-    let furigana: [Furigana]?
+    let rubyText: [RubyText]?
 
     init(
         text: String,
         dictionaryForm: String? = nil,
         reading: String? = nil,
-        furigana: [Furigana]? = nil
+        rubyText: [RubyText]? = nil
     ) {
         self.text = text
         self.dictionaryForm = dictionaryForm
         self.reading = reading
-        self.furigana = furigana
+        self.rubyText = rubyText
     }
 }

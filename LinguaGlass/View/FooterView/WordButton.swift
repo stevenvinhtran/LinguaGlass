@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 let mainFontSize = 55.0
-let furiganaFontSize = 18.0
+let rubyTextFontSize = 18.0
 
 // WordButton.swift
 struct WordButton: View {
@@ -26,20 +26,20 @@ struct WordButton: View {
                 onDictionary(token)
             }
         }) {
-            if let furigana = token.furigana, !furigana.isEmpty {
-                FuriganaText(base: token.text, furigana: furigana)
+            if let rubyText = token.rubyText, !rubyText.isEmpty {
+                RubyTextView(base: token.text, rubyText: rubyText)
                     .foregroundColor(isSelected ? .white : .black)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(isSelected ? Color.black : Color.clear)
                     .cornerRadius(8)
             } else {
-                // Add invisible furigana spacer to maintain consistent height
+                // Add invisible ruby text spacer to maintain consistent height
                 VStack(spacing: 0) {
                     Text(" ")
-                        .font(.system(size: furiganaFontSize))
+                        .font(.system(size: rubyTextFontSize))
                         .opacity(0)
-                        .frame(height: 12) // Match furigana height
+                        .frame(height: 12) // Match ruby text height
                     Text(token.text)
                         .font(.system(size: mainFontSize, weight: .semibold))
                 }
@@ -54,9 +54,9 @@ struct WordButton: View {
     }
 }
 
-struct FuriganaText: View {
+struct RubyTextView: View {
     let base: String
-    let furigana: [Furigana]
+    let rubyText: [RubyText]
 
     var body: some View {
         HStack(spacing: 0) {
@@ -64,11 +64,11 @@ struct FuriganaText: View {
                 VStack(spacing: 0) {
                     if let kana = seg.kana {
                         Text(kana)
-                            .font(.system(size: furiganaFontSize))
+                            .font(.system(size: rubyTextFontSize))
                             .frame(height: 12)
                     } else {
                         Text(" ")
-                            .font(.system(size: furiganaFontSize))
+                            .font(.system(size: rubyTextFontSize))
                             .opacity(0)
                             .frame(height: 12)
                     }
@@ -84,7 +84,7 @@ struct FuriganaText: View {
         var result: [Segment] = []
         var cursor = base.startIndex
 
-        let spans = furigana.sorted { $0.range.lowerBound < $1.range.lowerBound }
+        let spans = rubyText.sorted { $0.range.lowerBound < $1.range.lowerBound }
 
         for span in spans {
             if cursor < span.range.lowerBound {
@@ -94,7 +94,7 @@ struct FuriganaText: View {
                 }
             }
             let chunk = String(base[span.range])
-            result.append(Segment(text: chunk, kana: span.kana))
+            result.append(Segment(text: chunk, kana: span.ruby))
             cursor = span.range.upperBound
         }
 

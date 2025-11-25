@@ -52,7 +52,7 @@ final class TokenFooterViewModel: ObservableObject {
             text: searchText,
             dictionaryForm: nil,
             reading: nil,
-            furigana: nil
+            rubyText: nil
         )
         showDictionary(for: combinedToken)
     }
@@ -76,3 +76,4 @@ final class TokenFooterViewModel: ObservableObject {
         }
     }
 }
+

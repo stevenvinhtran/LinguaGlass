@@ -8,11 +8,6 @@
 
 import Foundation
 
-struct Furigana: Hashable {
-    let kana: String
-    let range: Range<String.Index>
-}
-
 class JapaneseUtils {
     private struct Prematch {
         let pattern: String
@@ -26,7 +21,7 @@ class JapaneseUtils {
         return string
     }
 
-    static func getFurigana(text: String, reading: String?) -> [Furigana] {
+    static func getFurigana(text: String, reading: String?) -> [RubyText] {
         let preMatch = getPrematch(text: text)
 
         guard let regex = try? NSRegularExpression(pattern: "^\(preMatch.pattern)$"),
@@ -34,7 +29,7 @@ class JapaneseUtils {
             return []
         }
 
-        var furigana = [Furigana]()
+        var furigana = [RubyText]()
         let fullReadingRange = NSRange(reading.startIndex..<reading.endIndex, in: reading)
 
         regex.enumerateMatches(in: reading, range: fullReadingRange) { (match, _, stop) in
@@ -45,8 +40,8 @@ class JapaneseUtils {
             for substring in preMatch.substrings {
                 if substring.unicodeScalars.first?.properties.isIdeographic == true {
                     guard let nsRange = Range(match.range(at: pickKanji), in: reading) else { return }
-                    furigana.append(Furigana(
-                        kana: String(reading[nsRange]),
+                    furigana.append(RubyText(
+                        ruby: String(reading[nsRange]),
                         range: position ..< text.index(position, offsetBy: substring.count)
                     ))
                     pickKanji += 1

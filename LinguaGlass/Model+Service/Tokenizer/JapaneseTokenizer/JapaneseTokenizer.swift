@@ -30,9 +30,8 @@ final class JapaneseTokenizer: TokenizerService {
                 text: mecabToken.base,
                 dictionaryForm: mecabToken.dictionaryForm,
                 reading: mecabToken.reading,
-                furigana: furigana.isEmpty ? nil : furigana
+                rubyText: furigana.isEmpty ? nil : furigana
             )
         }
     }
 }
-
