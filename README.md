@@ -24,20 +24,20 @@ Contact the developer at linguaglass@gmail.com for bug reports or additional lan
 ## Supported Languages
 
 Currently, OCR and dictionary lookup from:
-Japanese
-Korean
-Vietnamese
-Spanish
-French
-Portuguese
-Italian
-Romanian
-Chinese (Simplified)
-Chinese (Traditional)
+- Japanese
+- Korean
+- Vietnamese
+- Spanish
+- French
+- Portuguese
+- Italian
+- Romanian
+- Chinese (Simplified)
+- Chinese (Traditional)
 
 to:
 
-English
+- English
 
 is supported.
 
