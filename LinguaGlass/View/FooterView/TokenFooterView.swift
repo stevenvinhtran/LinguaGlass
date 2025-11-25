@@ -94,18 +94,23 @@ struct TokenFooter: View {
 
     private var editModeView: some View {
         HStack {
-            TextField("Enter text...", text: $viewModel.editText, axis: .horizontal)
-                .textFieldStyle(PlainTextFieldStyle())
-                .font(.system(size: 50, weight: .semibold))
-                .foregroundColor(.black)
-                .frame(height: Self.footerHeight)
-                .padding(.horizontal, horizontalPadding + buttonPadding)
-                .focused($isTextFieldFocused)
-                .onSubmit {
-                    viewModel.commitEditing(headerViewModel: headerViewModel,
-                                            settingsViewModel: settingsViewModel)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    TextField("Enter text...", text: $viewModel.editText, axis: .horizontal)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .font(.system(size: 50, weight: .semibold))
+                        .foregroundColor(.black)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .focused($isTextFieldFocused)
+                        .onSubmit {
+                            viewModel.commitEditing(headerViewModel: headerViewModel,
+                                                    settingsViewModel: settingsViewModel)
+                        }
+                        .submitLabel(.done)
                 }
-                .submitLabel(.done)
+                .padding(.horizontal, horizontalPadding + buttonPadding)
+            }
+            .frame(height: Self.footerHeight)
             Spacer()
         }
         .overlay(alignment: .topTrailing) {
@@ -115,6 +120,7 @@ struct TokenFooter: View {
             } label: {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 20, weight: .bold))
+                    .frame(width: 28, height: 28)
                     .foregroundColor(.blue)
             }
             .padding(buttonPadding)
@@ -136,7 +142,7 @@ struct TokenFooter: View {
                         }
                     }
                 }
-                .padding(.horizontal, horizontalPadding + 26)
+                .padding(.horizontal, horizontalPadding + 28)
             }
         }
         .overlay(alignment: .topLeading) {
@@ -148,6 +154,8 @@ struct TokenFooter: View {
                     Image(systemName: "doc.on.clipboard")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.blue)
+                        .frame(width: 28, height: 28)
+                        .contentShape(Circle())
                 }
                 .padding(buttonPadding)
                 
@@ -159,6 +167,8 @@ struct TokenFooter: View {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.blue)
+                        .frame(width: 28, height: 28)
+                        .contentShape(Circle())
                 }
                 .padding(buttonPadding)
                 
@@ -172,6 +182,8 @@ struct TokenFooter: View {
                 Image(systemName: "pencil")
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(.blue)
+                    .frame(width: 28, height: 28)
+                    .contentShape(Circle())
             }
             .padding(buttonPadding)
         }
