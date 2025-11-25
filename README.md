@@ -13,7 +13,7 @@ Contact the developer at linguaglass@gmail.com for bug reports or additional lan
 ## Features
 
 - **OCR Mode**  
-  Extracts text from user drag select using Vision and Tesseract OCR.
+  Extracts text from user drag select using Vision (Tesseract OCR for vertical scripts).
 
 - **Live Text Mode**  
   Screenshots and overlays an image on top the web view, enabling Apple's native live text feature.
@@ -23,7 +23,23 @@ Contact the developer at linguaglass@gmail.com for bug reports or additional lan
 
 ## Supported Languages
 
-Currently, only Japanese, Korean, and Vietnamese are supported.
+Currently, OCR and dictionary lookup from:
+Japanese
+Korean
+Vietnamese
+Spanish
+French
+Portuguese
+Italian
+Romanian
+Chinese (Simplified)
+Chinese (Traditional)
+
+to:
+
+English
+
+is supported.
 
 ## Installation
 
