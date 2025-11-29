@@ -126,10 +126,17 @@ class OCRService: ImageOCR {
         case .english:
             request.recognitionLanguages = ["en"]
             request.usesLanguageCorrection = true
+
+        case .other:
+            request.usesLanguageCorrection = true
+            request.automaticallyDetectsLanguage = true
         }
         
-        request.usesLanguageCorrection = true
-        request.automaticallyDetectsLanguage = false
+        // Allow per-case control of language detection
+        // request.usesLanguageCorrection remains true per-case where set
+        if language != .other {
+            request.automaticallyDetectsLanguage = false
+        }
     }
     
     private func handleVisionResults(request: VNRequest, error: Error?, completion: @escaping (Result<String, Error>) -> Void) {

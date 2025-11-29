@@ -42,6 +42,8 @@ struct DictionaryWebView: View {
             dictionaryURL = String(localized: "https://dictionary.reverso.net/romanian-english/\(sanitizedTerm)")
         case .english:
             dictionaryURL = String(localized: "https://www.dictionary.com/browse/\(sanitizedTerm)")
+        case .other:
+            dictionaryURL = String(localized: "https://translate.google.com/?sl=auto&tl=en&text=\(sanitizedTerm)&op=translate")
         }
         return URL(string: dictionaryURL)
     }

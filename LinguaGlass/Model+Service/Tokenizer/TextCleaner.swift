@@ -31,7 +31,7 @@ extension String {
             // strip digits + only a few symbols, keep Latin letters
             notAllowed.formUnion(CharacterSet(charactersIn:"-_/\\()|〔〕[]{}%:<>"))
             
-        case .english, .spanish, .french, .portuguese, .italian, .romanian:
+        case .english, .spanish, .french, .portuguese, .italian, .romanian, .other:
             // For these languages, do not strip letters or punctuation beyond digits
             break
         }
@@ -46,7 +46,7 @@ extension String {
             let parts = result.split(whereSeparator: { $0.isWhitespace })
             result = parts.joined(separator: "")
             
-        case .english, .korean, .vietnamese, .spanish, .french, .portuguese, .italian, .romanian:
+        case .english, .korean, .vietnamese, .spanish, .french, .portuguese, .italian, .romanian, .other:
             let parts = result.split(whereSeparator: { $0.isWhitespace })
             result = parts.joined(separator: " ")
         }

@@ -56,6 +56,15 @@ struct OCRGestureHandler: UIViewRepresentable {
             self.parent = parent
         }
         
+        private func clampedLocation(from gesture: UIGestureRecognizer) -> CGPoint {
+            let location = gesture.location(in: gesture.view)
+            guard let view = gesture.view else { return location }
+            let bounds = view.bounds
+            let x = max(bounds.minX, min(location.x, bounds.maxX))
+            let y = max(bounds.minY, min(location.y, bounds.maxY))
+            return CGPoint(x: x, y: y)
+        }
+        
         private func beginSelection(at location: CGPoint) {
             startPoint = location
             parent.headerViewModel.startOCRSelection(at: location)
@@ -96,7 +105,7 @@ struct OCRGestureHandler: UIViewRepresentable {
         
         @objc func handlePressPan(_ gesture: UILongPressGestureRecognizer) {
             guard parent.headerViewModel.isOCRModeActive else { return }
-            let location = gesture.location(in: gesture.view)
+            let location = clampedLocation(from: gesture)
             switch gesture.state {
             case .began:
                 beginSelection(at: location)

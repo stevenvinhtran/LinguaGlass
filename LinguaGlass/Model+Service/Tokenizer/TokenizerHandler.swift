@@ -28,6 +28,9 @@ struct TokenizerHandler {
             
         case .chineseSimplifiedHorizontal, .chineseTraditionalHorizontal, .chineseSimplifiedVertical, .chineseTraditionalVertical:
             return ChineseTokenizer(language: settings.targetLanguage)
+            
+        case .other:
+            return OtherTokenizer()
         }
     }
     
@@ -42,3 +45,4 @@ struct TokenizerHandler {
         return tokens
     }
 }
+
