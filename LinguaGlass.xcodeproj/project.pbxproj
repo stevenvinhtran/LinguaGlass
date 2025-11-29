@@ -61,6 +61,9 @@
 		5DC70BD62E64C06D00FA99AD /* vietnamese_syllables.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DC70BD42E64C06D00FA99AD /* vietnamese_syllables.txt */; };
 		5DC70BD72E64C06D00FA99AD /* vietnamese_wordlist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DC70BD52E64C06D00FA99AD /* vietnamese_wordlist.txt */; };
 		5DC70BD92E64CF5400FA99AD /* TextCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70BD82E64CF5400FA99AD /* TextCleaner.swift */; };
+		5DCDA3752EDB5B6400234536 /* AcknowledgementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDA3742EDB5B5600234536 /* AcknowledgementView.swift */; };
+		5DCDA3782EDB5C1F00234536 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDA3772EDB5C1A00234536 /* AboutView.swift */; };
+		5DCDA37B2EDB5C4900234536 /* DictionariesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDA37A2EDB5C4200234536 /* DictionariesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +117,9 @@
 		5DC70BD42E64C06D00FA99AD /* vietnamese_syllables.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vietnamese_syllables.txt; sourceTree = "<group>"; };
 		5DC70BD52E64C06D00FA99AD /* vietnamese_wordlist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vietnamese_wordlist.txt; sourceTree = "<group>"; };
 		5DC70BD82E64CF5400FA99AD /* TextCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleaner.swift; sourceTree = "<group>"; };
+		5DCDA3742EDB5B5600234536 /* AcknowledgementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementView.swift; sourceTree = "<group>"; };
+		5DCDA3772EDB5C1A00234536 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		5DCDA37A2EDB5C4200234536 /* DictionariesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionariesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +185,7 @@
 				5D357B172E5F575B000A59EA /* MainView.swift */,
 				5D357B2E2E5F6830000A59EA /* WebBrowserView.swift */,
 				5D357B3D2E5F8961000A59EA /* HeaderView.swift */,
-				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
+				5DCDA3762EDB5BC400234536 /* SettingsView */,
 				5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */,
 				5D6E1E3D2E63810600414F9C /* OCRView */,
 				5D6E1E3C2E6380E700414F9C /* FooterView */,
@@ -349,6 +355,17 @@
 			path = OCRView;
 			sourceTree = "<group>";
 		};
+		5DCDA3762EDB5BC400234536 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				5D357B492E5FBB6B000A59EA /* SettingsView.swift */,
+				5DCDA3772EDB5C1A00234536 /* AboutView.swift */,
+				5DCDA3742EDB5B5600234536 /* AcknowledgementView.swift */,
+				5DCDA37A2EDB5C4200234536 /* DictionariesView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -470,6 +487,7 @@
 				5D357B482E5FBAD6000A59EA /* SettingsViewModel.swift in Sources */,
 				5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */,
 				5D357B692E5FE1F5000A59EA /* OCRGestureHandler.swift in Sources */,
+				5DCDA3782EDB5C1F00234536 /* AboutView.swift in Sources */,
 				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
 				5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */,
 				5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */,
@@ -478,6 +496,7 @@
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5DC70BD92E64CF5400FA99AD /* TextCleaner.swift in Sources */,
 				5D3AEEED2E6621DC00ED324E /* TutorialView.swift in Sources */,
+				5DCDA3752EDB5B6400234536 /* AcknowledgementView.swift in Sources */,
 				5D357B292E5F675E000A59EA /* WebBrowserState.swift in Sources */,
 				5D3895A92ED4F00A0033D546 /* LatinTokenizer.swift in Sources */,
 				5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */,
@@ -487,6 +506,7 @@
 				5D357B742E5FEAAA000A59EA /* TesseractOCR.swift in Sources */,
 				5D8D27692E62D08A004C806A /* JapaneseUtils.swift in Sources */,
 				5D393FCA2E62802E00CB2FB1 /* TokenFooterViewModel.swift in Sources */,
+				5DCDA37B2EDB5C4900234536 /* DictionariesView.swift in Sources */,
 				5D3895B12ED609250033D546 /* ChineseUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

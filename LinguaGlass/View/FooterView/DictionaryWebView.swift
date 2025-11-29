@@ -15,37 +15,82 @@ struct DictionaryWebView: View {
     @State private var webView: WKWebView?
     @State private var progress: Double = 0.0
     @State private var isLoading: Bool = false
-    @State private var appLanguage: AppLanguage = .english
-    
+    @Environment(\.locale) private var locale
+
+    // Localize a template string using the SwiftUI environment locale
+    private func localizedTemplate(for defaultTemplate: String) -> String {
+        let key = defaultTemplate
+
+        let identifier = locale.identifier
+        let languageCode = locale.language.languageCode?.identifier
+
+        let bundle: Bundle
+
+        if let path = Bundle.main.path(forResource: identifier, ofType: "lproj"),
+           let locBundle = Bundle(path: path) {
+            bundle = locBundle
+        } else if let languageCode,
+                  let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+                  let locBundle = Bundle(path: path) {
+            bundle = locBundle
+        } else {
+            bundle = .main
+        }
+
+        return NSLocalizedString(key,
+                                 tableName: nil,
+                                 bundle: bundle,
+                                 value: defaultTemplate,
+                                 comment: "")
+    }
+
     // Compute URL directly from props
     private var computedURL: URL? {
-        let sanitizedTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? searchTerm
-        let dictionaryURL: String
+        let sanitizedTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            ?? searchTerm
+
+        let template: String
+
         switch language {
         case .japaneseVertical, .japaneseHorizontal:
-            dictionaryURL = String(localized: "https://jisho.org/search/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://jisho.org/search/%@")
+
         case .korean:
-            dictionaryURL = String(localized: "https://korean.dict.naver.com/koendict/#/search?query=\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://korean.dict.naver.com/koendict/#/search?query=%@")
+
         case .vietnamese:
-            dictionaryURL = String(localized: "https://tracau.vn/?s=\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://tracau.vn/?s=%@")
+
         case .spanish:
-            dictionaryURL = String(localized: "https://www.spanishdict.com/translate/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://www.spanishdict.com/translate/%@")
+
         case .french:
-            dictionaryURL = String(localized: "https://www.frenchdictionary.com/translate/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://www.frenchdictionary.com/translate/%@")
+
         case .portuguese:
-            dictionaryURL = String(localized: "https://dictionary.reverso.net/portuguese-english/\(sanitizedTerm)")
-        case .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
-            dictionaryURL = String(localized: "https://hanzii.net/search/word/\(sanitizedTerm)?hl=en")
+            template = localizedTemplate(for: "https://dictionary.reverso.net/portuguese-english/%@")
+
+        case .chineseSimplifiedHorizontal,
+             .chineseSimplifiedVertical,
+             .chineseTraditionalHorizontal,
+             .chineseTraditionalVertical:
+            template = localizedTemplate(for: "https://hanzii.net/search/word/%@?hl=en")
+
         case .italian:
-            dictionaryURL = String(localized: "https://dictionary.reverso.net/italian-english/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://dictionary.reverso.net/italian-english/%@")
+
         case .romanian:
-            dictionaryURL = String(localized: "https://dictionary.reverso.net/romanian-english/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://dictionary.reverso.net/romanian-english/%@")
+
         case .english:
-            dictionaryURL = String(localized: "https://www.dictionary.com/browse/\(sanitizedTerm)")
+            template = localizedTemplate(for: "https://www.dictionary.com/browse/%@")
+
         case .other:
-            dictionaryURL = String(localized: "https://translate.google.com/?sl=auto&tl=en&text=\(sanitizedTerm)&op=translate")
+            template = localizedTemplate(for: "https://translate.google.com/?sl=auto&tl=en&text=%@&op=translate")
         }
-        return URL(string: dictionaryURL)
+
+        let urlString = String(format: template, sanitizedTerm)
+        return URL(string: urlString)
     }
     
     var body: some View {

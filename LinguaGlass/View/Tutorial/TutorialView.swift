@@ -14,56 +14,56 @@ struct TutorialView: View {
     
     let tutorialPages = [
         TutorialPage(
-            title: String(localized:"Welcome to LinguaGlass"),
-            description: String(localized:"Your all-in-one language learning browser with OCR and dictionary lookup tools."),
+            title: "Welcome to LinguaGlass",
+            description: "Your all-in-one language learning browser with OCR and dictionary lookup tools.",
             image: "hand.wave.fill",
             color: .blue
         ),
         TutorialPage(
-            title: String(localized:"Web Browsing"),
-            description: String(localized:"Browse any website normally. Use the search bar to navigate or enter URLs."),
+            title: "Web Browsing",
+            description: "Browse any website normally. Use the search bar to navigate or enter URLs.",
             image: "globe",
             color: .green
         ),
         TutorialPage(
-            title: String(localized:"OCR Text Selection"),
-            description: String(localized:"Tap this icon, then drag to select text on any webpage for text extraction."),
+            title: "OCR Text Selection",
+            description: "Tap this icon, then drag to select text on any webpage for text extraction.",
             image: "viewfinder",
             color: .orange
         ),
         TutorialPage(
-            title: String(localized:"Live Text Mode"),
-            description: String(localized:"Tap this icon to capture the page and use iOS Live Text to translate/copy text."),
+            title: "Live Text Mode",
+            description: "Tap this icon to capture the page and use iOS Live Text to translate/copy text.",
             image: "camera",
             color: .purple
         ),
         TutorialPage(
-            title: String(localized:"Word Lookup"),
-            description: String(localized:"Selected text appears in the footer. Tap words to see dictionary definitions."),
+            title: "Word Lookup",
+            description: "Selected text appears in the footer. Tap words to see dictionary definitions.",
             image: "text.word.spacing",
             color: .red
         ),
         TutorialPage(
-            title: String(localized:"Paste Button"),
-            description: String(localized:"Tap the clipboard to paste text into the footer."),
+            title: "Paste Button",
+            description: "Tap the clipboard to paste text into the footer.",
             image: "doc.on.clipboard",
             color: .yellow
         ),
         TutorialPage(
-            title: String(localized:"Search Sentence Button"),
-            description: String(localized:"Tap the magnifying glass to lookup all the words in the footer."),
+            title: "Search Sentence Button",
+            description: "Tap the magnifying glass to lookup all the words in the footer.",
             image: "magnifyingglass",
             color: .indigo
         ),
         TutorialPage(
-            title: String(localized:"Edit Button"),
-            description: String(localized:"Tap the pencil to edit the footer text."),
+            title: "Edit Button",
+            description: "Tap the pencil to edit the footer text.",
             image: "pencil",
             color: .teal
         ),
         TutorialPage(
-            title: String(localized:"Multi-Language Support"),
-            description: String(localized: "Change language in settings."),
+            title: "Multi-Language Support",
+            description: "Change language in settings.",
             image: "character.bubble",
             color: .gray
         )
@@ -183,8 +183,8 @@ struct TutorialView: View {
 }
 
 struct TutorialPage {
-    let title: String
-    let description: String
+    let title: LocalizedStringKey
+    let description: LocalizedStringKey
     let image: String
     let color: Color
 }
@@ -259,7 +259,7 @@ struct AppLanguageSelectionPage: View {
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 40)
 
-            Picker(String(localized: "App Language"), selection: $appLanguage) {
+            Picker("App Language", selection: $appLanguage) {
                 ForEach(AppLanguage.allCases) { lang in
                     Text(lang.displayName).tag(lang)
                 }
@@ -294,7 +294,7 @@ struct TargetLanguageSelectionPage: View {
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 40)
 
-            Picker(String(localized: "Target Language"), selection: $targetLanguage) {
+            Picker("Target Language", selection: $targetLanguage) {
                 ForEach(TargetLanguage.allCases) { language in
                     Text(language.displayName).tag(language)
                 }

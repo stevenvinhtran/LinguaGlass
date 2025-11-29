@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum TargetLanguage: String, CaseIterable, Identifiable, Codable {
     case japaneseVertical
@@ -25,23 +26,23 @@ enum TargetLanguage: String, CaseIterable, Identifiable, Codable {
     case other
     
     var id: String { rawValue }
-    var displayName: String {
+    var displayName: LocalizedStringKey {
         switch self {
-        case .japaneseVertical: return String(localized: "Japanese (Vertical)")
-        case .japaneseHorizontal: return String(localized: "Japanese (Horizontal)")
-        case .korean: return String(localized: "Korean")
-        case .vietnamese: return String(localized: "Vietnamese")
-        case .spanish: return String(localized: "Spanish")
-        case .french: return String(localized: "French")
-        case .portuguese: return String(localized: "Portuguese")
-        case .chineseSimplifiedVertical: return String(localized: "Chinese (Simplified, Vertical)")
-        case .chineseSimplifiedHorizontal: return String(localized: "Chinese (Simplified, Horizontal)")
-        case .chineseTraditionalVertical: return String(localized: "Chinese (Traditional, Vertical)")
-        case .chineseTraditionalHorizontal: return String(localized: "Chinese (Traditional, Horizontal)")
-        case .italian: return String(localized: "Italian")
-        case .romanian: return String(localized: "Romanian")
-        case .english: return String(localized: "English")
-        case .other: return String(localized: "Other")
+        case .japaneseVertical: return  "Japanese (Vertical)"
+        case .japaneseHorizontal: return  "Japanese (Horizontal)"
+        case .korean: return  "Korean"
+        case .vietnamese: return  "Vietnamese"
+        case .spanish: return  "Spanish"
+        case .french: return  "French"
+        case .portuguese: return  "Portuguese"
+        case .chineseSimplifiedVertical: return  "Chinese (Simplified, Vertical)"
+        case .chineseSimplifiedHorizontal: return  "Chinese (Simplified, Horizontal)"
+        case .chineseTraditionalVertical: return  "Chinese (Traditional, Vertical)"
+        case .chineseTraditionalHorizontal: return  "Chinese (Traditional, Horizontal)"
+        case .italian: return  "Italian"
+        case .romanian: return  "Romanian"
+        case .english: return  "English"
+        case .other: return  "Other"
         }
     }
 }
@@ -77,7 +78,7 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable {
         }
     }
     
-    var displayName: String { String(localized: .init(rawValue))}
+    var displayName: String { .init(rawValue)}
 }
 
 enum AppTheme: String, CaseIterable, Identifiable, Codable {
@@ -86,11 +87,11 @@ enum AppTheme: String, CaseIterable, Identifiable, Codable {
     case system
     
     var id: String { rawValue }
-    var displayName: String {
+    var displayName: LocalizedStringKey {
         switch self {
-        case .light: return String(localized: "Light")
-        case .dark: return String(localized: "Dark")
-        case .system: return String(localized: "System")
+        case .light: return "Light"
+        case .dark: return "Dark"
+        case .system: return "System"
         }
     }
 }
@@ -101,19 +102,45 @@ enum NewTabBehavior: String, CaseIterable, Identifiable, Codable {
     case neverOpen
     
     var id: String { rawValue }
-    var displayName: String {
+    var displayName: LocalizedStringKey {
         switch self {
-        case .ask: return String(localized: "Ask before opening")
-        case .alwaysOpen: return String(localized: "Always open")
-        case .neverOpen: return String(localized: "Never open")
+        case .ask: return "Ask before opening"
+        case .alwaysOpen: return "Always open"
+        case .neverOpen: return "Never open"
         }
     }
 }
 
 struct AppSettings: Codable {
     var targetLanguage: TargetLanguage = .japaneseVertical
-    var appLanguage: AppLanguage = .english
+    var appLanguage: AppLanguage = .defaultForCurrentLocale()
     var appTheme: AppTheme = .system
     var newTabBehavior: NewTabBehavior = .ask
+}
+
+
+extension AppLanguage {
+    static func defaultForCurrentLocale() -> AppLanguage {
+        let preferred = Locale.preferredLanguages.first ?? "en"
+
+        if preferred.hasPrefix("ja") { return .japanese }
+        if preferred.hasPrefix("ko") { return .korean }
+        if preferred.hasPrefix("vi") { return .vietnamese }
+        if preferred.hasPrefix("es") { return .spanish }
+        if preferred.hasPrefix("fr") { return .french }
+        if preferred.hasPrefix("pt") { return .portuguese }
+        if preferred.hasPrefix("it") { return .italian }
+        if preferred.hasPrefix("ro") { return .romanian }
+        
+        if preferred.hasPrefix("zh-Hans") || preferred.hasPrefix("zh-CN") || preferred.hasPrefix("zh-SG") {
+            return .chineseSimplified
+        }
+        
+        if preferred.hasPrefix("zh-Hant") || preferred.hasPrefix("zh-TW") || preferred.hasPrefix("zh-HK") {
+            return .chineseTraditional
+        }
+
+        return .english
+    }
 }
 
