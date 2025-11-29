@@ -73,7 +73,7 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
             document.head.appendChild(meta);
         }
         """
-        let userScript = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(userScript)
 
         // Observe loading state and progress
