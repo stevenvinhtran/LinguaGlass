@@ -18,11 +18,11 @@ class OCRService: ImageOCR {
     }
     
     func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void) {
-        switch settings.selectedLanguage {
+        switch settings.targetLanguage {
         case .japaneseVertical, .chineseSimplifiedVertical, .chineseTraditionalVertical:
             // Map app Language to TesseractOCR.Language and use Tesseract only for vertical scripts
             let tesseractLanguage: TesseractOCR.Language?
-            switch settings.selectedLanguage {
+            switch settings.targetLanguage {
             case .japaneseVertical: tesseractLanguage = .japaneseVertical
             case .chineseSimplifiedVertical: tesseractLanguage = .chineseSimplifiedVertical
             case .chineseTraditionalVertical: tesseractLanguage = .chineseTraditionalVertical
@@ -51,7 +51,7 @@ class OCRService: ImageOCR {
             self?.handleVisionResults(request: request, error: error, completion: completion)
         }
         
-        configureVisionRequest(request, for: settings.selectedLanguage)
+        configureVisionRequest(request, for: settings.targetLanguage)
         
         // Perform the request on a background queue
         DispatchQueue.global(qos: .userInitiated).async {
@@ -63,7 +63,7 @@ class OCRService: ImageOCR {
         }
     }
     
-    private func configureVisionRequest(_ request: VNRecognizeTextRequest, for language: Language) {
+    private func configureVisionRequest(_ request: VNRecognizeTextRequest, for language: TargetLanguage) {
         request.recognitionLevel = .accurate
         
         switch language {

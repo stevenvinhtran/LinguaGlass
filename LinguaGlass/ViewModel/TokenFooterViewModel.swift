@@ -38,7 +38,7 @@ final class TokenFooterViewModel: ObservableObject {
         guard !tokens.isEmpty else { return }
         
         let searchText: String
-        switch settingsViewModel.settings.selectedLanguage {
+        switch settingsViewModel.settings.targetLanguage {
         case .japaneseVertical, .japaneseHorizontal, .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
             // Japanese and Chinese concatenates all tokens without spaces
             searchText = tokens.map { $0.text }.joined()

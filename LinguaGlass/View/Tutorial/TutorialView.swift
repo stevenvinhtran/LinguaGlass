@@ -13,56 +13,56 @@ struct TutorialView: View {
     
     let tutorialPages = [
         TutorialPage(
-            title: "Welcome to LinguaGlass",
-            description: "Your all-in-one language learning browser with OCR and dictionary lookup tools.",
+            title: String(localized:"Welcome to LinguaGlass"),
+            description: String(localized:"Your all-in-one language learning browser with OCR and dictionary lookup tools."),
             image: "hand.wave.fill",
             color: .blue
         ),
         TutorialPage(
-            title: "Web Browsing",
-            description: "Browse any website normally. Use the search bar to navigate or enter URLs.",
+            title: String(localized:"Web Browsing"),
+            description: String(localized:"Browse any website normally. Use the search bar to navigate or enter URLs."),
             image: "globe",
             color: .green
         ),
         TutorialPage(
-            title: "OCR Text Selection",
-            description: "Tap this icon, then drag to select text on any webpage for text extraction.",
+            title: String(localized:"OCR Text Selection"),
+            description: String(localized:"Tap this icon, then drag to select text on any webpage for text extraction."),
             image: "viewfinder",
             color: .orange
         ),
         TutorialPage(
-            title: "Live Text Mode",
-            description: "Tap this icon to capture the page and use iOS Live Text to translate/copy text.",
+            title: String(localized:"Live Text Mode"),
+            description: String(localized:"Tap this icon to capture the page and use iOS Live Text to translate/copy text."),
             image: "camera",
             color: .purple
         ),
         TutorialPage(
-            title: "Word Lookup",
-            description: "Selected text appears in the footer. Tap words to see dictionary definitions.",
+            title: String(localized:"Word Lookup"),
+            description: String(localized:"Selected text appears in the footer. Tap words to see dictionary definitions."),
             image: "text.word.spacing",
             color: .red
         ),
         TutorialPage(
-            title: "Paste Button",
-            description: "Tap the clipboard to paste text into the footer.",
+            title: String(localized:"Paste Button"),
+            description: String(localized:"Tap the clipboard to paste text into the footer."),
             image: "doc.on.clipboard",
             color: .yellow
         ),
         TutorialPage(
-            title: "Search Sentence Button",
-            description: "Tap the magnifying glass to lookup all the words in the footer.",
+            title: String(localized:"Search Sentence Button"),
+            description: String(localized:"Tap the magnifying glass to lookup all the words in the footer."),
             image: "magnifyingglass",
             color: .indigo
         ),
         TutorialPage(
-            title: "Edit Button",
-            description: "Tap the pencil to edit the footer text.",
+            title: String(localized:"Edit Button"),
+            description: String(localized:"Tap the pencil to edit the footer text."),
             image: "pencil",
             color: .teal
         ),
         TutorialPage(
-            title: "Multi-Language Support",
-            description: "Supports Japanese, Korean, and Vietnamese. Change language in settings.",
+            title: String(localized:"Multi-Language Support"),
+            description: String(localized:"Supports Japanese, Korean, and Vietnamese. Change language in settings."),
             image: "character.bubble",
             color: .gray
         )

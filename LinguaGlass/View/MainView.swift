@@ -69,6 +69,7 @@ struct MainView: View {
                     .zIndex(1)
             }
         }
+        .environment(\.locale, Locale(identifier: settingsViewModel.settings.appLanguage.localeIdentifier))
         .onAppear {
             showTutorial = TutorialManager.shared.shouldShowTutorial
         }
@@ -79,6 +80,7 @@ struct MainView: View {
             SettingsView(showTutorial: $showTutorial)
                 .environmentObject(settingsViewModel)
                 .preferredColorScheme(settingsViewModel.getColorScheme())
+                .environment(\.locale, Locale(identifier: settingsViewModel.settings.appLanguage.localeIdentifier))
         }
         .preferredColorScheme(settingsViewModel.getColorScheme())
         .ignoresSafeArea(edges: .bottom)

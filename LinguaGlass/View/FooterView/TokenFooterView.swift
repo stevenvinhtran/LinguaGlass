@@ -39,7 +39,7 @@ struct TokenFooter: View {
             if let token = viewModel.selectedToken {
                 DictionaryWebView(
                     searchTerm: token.text,
-                    language: settingsViewModel.settings.selectedLanguage,
+                    language: settingsViewModel.settings.targetLanguage,
                     isPresented: $viewModel.showDictionary
                 )
                 .frame(height: Self.dictionaryHeight)
@@ -79,7 +79,7 @@ struct TokenFooter: View {
                                         settingsViewModel: settingsViewModel)
             }
         }
-        .onChange(of: settingsViewModel.settings.selectedLanguage) {
+        .onChange(of: settingsViewModel.settings.targetLanguage) {
             Task {
                 if (try? TokenizerHandler.makeTokenizer(using: settingsViewModel.settings)) != nil {
                     await viewModel.tokenize(from: viewModel.editText,

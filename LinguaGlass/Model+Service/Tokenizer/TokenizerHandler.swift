@@ -10,7 +10,7 @@ import NaturalLanguage
 
 struct TokenizerHandler {
     static func makeTokenizer(using settings: AppSettings) throws -> TokenizerService {
-        switch settings.selectedLanguage {
+        switch settings.targetLanguage {
         case .japaneseVertical, .japaneseHorizontal:
             return try JapaneseTokenizer()
             
@@ -21,10 +21,10 @@ struct TokenizerHandler {
             return try VietnameseTokenizer()
             
         case .spanish, .french, .portuguese, .italian, .romanian:
-            return LatinLanguageTokenizer(language: settings.selectedLanguage)
+            return LatinLanguageTokenizer(language: settings.targetLanguage)
             
         case .chineseSimplifiedHorizontal, .chineseTraditionalHorizontal, .chineseSimplifiedVertical, .chineseTraditionalVertical:
-            return ChineseTokenizer(language: settings.selectedLanguage)
+            return ChineseTokenizer(language: settings.targetLanguage)
         }
     }
     
@@ -34,7 +34,7 @@ struct TokenizerHandler {
         settings: AppSettings
     ) async throws -> [Token] {
         let tokenizer = try makeTokenizer(using: settings)
-        let tokens = try await tokenizer.tokenize(text: text.cleaned(for: settings.selectedLanguage))
+        let tokens = try await tokenizer.tokenize(text: text.cleaned(for: settings.targetLanguage))
         headerViewModel.isProcessing = false
         return tokens
     }

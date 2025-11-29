@@ -10,11 +10,12 @@ import WebKit
 
 struct DictionaryWebView: View {
     let searchTerm: String
-    let language: Language
+    let language: TargetLanguage
     @Binding var isPresented: Bool
     @State private var webView: WKWebView?
     @State private var progress: Double = 0.0
     @State private var isLoading: Bool = false
+    @State private var appLanguage: AppLanguage = .english
     
     // Compute URL directly from props
     private var computedURL: URL? {

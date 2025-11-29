@@ -9,10 +9,10 @@ import Foundation
 import NaturalLanguage
 
 class LatinLanguageTokenizer: TokenizerService {
-    let language: Language
+    let language: TargetLanguage
     let nlLanguage: NLLanguage
     
-    init(language: Language) {
+    init(language: TargetLanguage) {
         self.language = language
         switch language {
         case .spanish:

@@ -11,7 +11,7 @@ import WWJavaScriptContext
 import WWJavaScriptContext_Pinyin
 
 struct ChineseTokenizer: TokenizerService {
-    let language: Language
+    let language: TargetLanguage
     
     func tokenize(text: String) async throws -> [Token] {
         let nlLanguage: NLLanguage
@@ -39,3 +39,4 @@ struct ChineseTokenizer: TokenizerService {
         return tokens
     }
 }
+

@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    func cleaned(for language: Language) -> String {
+    func cleaned(for language: TargetLanguage) -> String {
         // Trim + lowercase
         var result = self
             .trimmingCharacters(in: .whitespacesAndNewlines)

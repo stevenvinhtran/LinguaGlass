@@ -14,11 +14,21 @@ struct SettingsView: View {
     @State private var showingAcknowledgements = false
     @Binding var showTutorial: Bool
     
-    private var languageBinding: Binding<Language> {
+    private var targetLanguageBinding: Binding<TargetLanguage> {
         Binding(
-            get: { viewModel.settings.selectedLanguage },
+            get: { viewModel.settings.targetLanguage },
             set: { newLanguage in
-                viewModel.settings.selectedLanguage = newLanguage
+                viewModel.settings.targetLanguage = newLanguage
+                viewModel.saveSettings(viewModel.settings)
+            }
+        )
+    }
+    
+    private var appLanguageBinding: Binding<AppLanguage> {
+        Binding(
+            get: { viewModel.settings.appLanguage },
+            set: { newAppLang in
+                viewModel.settings.appLanguage = newAppLang
                 viewModel.saveSettings(viewModel.settings)
             }
         )
@@ -50,9 +60,16 @@ struct SettingsView: View {
             Form {
                 // Language Section
                 Section(header: Text("Language")) {
-                    Picker("Select Language", selection: languageBinding) {
-                        ForEach(Language.allCases) { language in
-                            Text(language.rawValue).tag(language)
+                    Picker("App Language", selection: appLanguageBinding) {
+                        ForEach(AppLanguage.allCases) { lang in
+                            Text(lang.displayName).tag(lang)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    
+                    Picker("Target Language", selection: targetLanguageBinding) {
+                        ForEach(TargetLanguage.allCases) { language in
+                            Text(language.displayName).tag(language)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -67,7 +84,7 @@ struct SettingsView: View {
                 Section(header: Text("Appearance")) {
                     Picker("Theme", selection: themeBinding) {
                         ForEach(AppTheme.allCases) { theme in
-                            Text(theme.rawValue).tag(theme)
+                            Text(theme.displayName).tag(theme)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
@@ -77,7 +94,7 @@ struct SettingsView: View {
                 Section(header: Text("Links & Tabs")) {
                     Picker("Open new‑tab links", selection: newTabBehaviorBinding) {
                         ForEach(NewTabBehavior.allCases) { behavior in
-                            Text(behavior.rawValue).tag(behavior)
+                            Text(behavior.displayName).tag(behavior)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())

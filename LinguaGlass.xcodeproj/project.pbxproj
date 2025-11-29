@@ -50,6 +50,7 @@
 		5D393FD02E62B8E600CB2FB1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */; };
 		5D3AEEED2E6621DC00ED324E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */; };
 		5D3AEEEF2E66220700ED324E /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEE2E66220700ED324E /* TutorialManager.swift */; };
+		5D63D6F92EDABF2500685740 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D63D6F82EDABF2500685740 /* Localizable.xcstrings */; };
 		5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */; };
 		5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */; };
 		5D7460592E63ECD400D5A5FF /* LiveTextImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */; };
@@ -99,6 +100,8 @@
 		5D393FCF2E62B8E600CB2FB1 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		5D3AEEEE2E66220700ED324E /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
+		5D63D6E62EDAB7E200685740 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
+		5D63D6F82EDABF2500685740 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanTokenizer.swift; sourceTree = "<group>"; };
 		5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWebView.swift; sourceTree = "<group>"; };
 		5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextImageView.swift; sourceTree = "<group>"; };
@@ -145,12 +148,14 @@
 		5D357B142E5F575B000A59EA /* LinguaGlass */ = {
 			isa = PBXGroup;
 			children = (
+				5D63D6E72EDAB7E200685740 /* Info.plist */,
 				5D357B152E5F575B000A59EA /* LinguaGlassApp.swift */,
 				5D357B242E5F63EB000A59EA /* Model+Service */,
 				5D357B232E5F63C5000A59EA /* View */,
 				5D357B252E5F645D000A59EA /* ViewModel */,
 				5D357B192E5F575E000A59EA /* Assets.xcassets */,
 				5D357B1B2E5F575E000A59EA /* Preview Content */,
+				5D63D6F82EDABF2500685740 /* Localizable.xcstrings */,
 			);
 			path = LinguaGlass;
 			sourceTree = "<group>";
@@ -372,6 +377,16 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				es,
+				"zh-Hans",
+				"zh-Hant",
+				"pt-PT",
+				ko,
+				vi,
+				it,
+				fr,
+				ro,
 			);
 			mainGroup = 5D357B092E5F575B000A59EA;
 			packageReferences = (
@@ -395,6 +410,7 @@
 			files = (
 				5D357B1D2E5F575E000A59EA /* Preview Assets.xcassets in Resources */,
 				5DC70BD72E64C06D00FA99AD /* vietnamese_wordlist.txt in Resources */,
+				5D63D6F92EDABF2500685740 /* Localizable.xcstrings in Resources */,
 				5DC70BD62E64C06D00FA99AD /* vietnamese_syllables.txt in Resources */,
 				5D357B1A2E5F575E000A59EA /* Assets.xcassets in Resources */,
 				5D357B792E5FED87000A59EA /* tessdata in Resources */,
@@ -452,6 +468,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5D63D6E72EDAB7E200685740 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D63D6E62EDAB7E200685740 /* en */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5D357B1E2E5F575E000A59EA /* Debug */ = {
@@ -513,6 +540,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -569,6 +597,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -584,6 +613,7 @@
 				DEVELOPMENT_TEAM = TU8HRLAMCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LinguaGlass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -614,6 +644,7 @@
 				DEVELOPMENT_TEAM = TU8HRLAMCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LinguaGlass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
