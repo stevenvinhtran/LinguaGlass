@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TutorialView: View {
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
     @Binding var isShowing: Bool
     @State private var currentPage = 0
     
@@ -62,11 +63,13 @@ struct TutorialView: View {
         ),
         TutorialPage(
             title: String(localized:"Multi-Language Support"),
-            description: String(localized:"Supports Japanese, Korean, and Vietnamese. Change language in settings."),
+            description: String(localized: "Change language in settings."),
             image: "character.bubble",
             color: .gray
         )
     ]
+    
+    private var totalPageCount: Int { tutorialPages.count + 2 }
     
     var body: some View {
         ZStack {
@@ -81,9 +84,16 @@ struct TutorialView: View {
             VStack {
                 // Progress dots with smoother animation
                 HStack(spacing: 8) {
-                    ForEach(0..<tutorialPages.count, id: \.self) { index in
+                    ForEach(0..<totalPageCount, id: \.self) { index in
+                        let color: Color = {
+                            switch index {
+                            case 0: return .white // App Language page dot
+                            case 1: return .pink  // Target Language page dot
+                            default: return tutorialPages[index - 2].color
+                            }
+                        }()
                         Circle()
-                            .fill(currentPage == index ? tutorialPages[index].color : .gray.opacity(0.3))
+                            .fill(currentPage == index ? color : .gray.opacity(0.3))
                             .frame(width: currentPage == index ? 12 : 8, height: currentPage == index ? 12 : 8)
                             .animation(.spring(response: 0.3, dampingFraction: 0.7), value: currentPage)
                     }
@@ -91,9 +101,30 @@ struct TutorialView: View {
                 .padding(.top, 30)
                 
                 TabView(selection: $currentPage) {
+                    // Page 0: App Language selection
+                    AppLanguageSelectionPage(appLanguage: Binding(
+                        get: { settingsViewModel.settings.appLanguage },
+                        set: { newLang in
+                            settingsViewModel.settings.appLanguage = newLang
+                            settingsViewModel.saveSettings(settingsViewModel.settings)
+                        }
+                    ))
+                    .tag(0)
+
+                    // Page 1: Target Language selection
+                    TargetLanguageSelectionPage(targetLanguage: Binding(
+                        get: { settingsViewModel.settings.targetLanguage },
+                        set: { newLang in
+                            settingsViewModel.settings.targetLanguage = newLang
+                            settingsViewModel.saveSettings(settingsViewModel.settings)
+                        }
+                    ))
+                    .tag(1)
+
+                    // Remaining tutorial pages shifted by +2
                     ForEach(0..<tutorialPages.count, id: \.self) { index in
-                        TutorialPageView(page: tutorialPages[index], isLastPage: index == tutorialPages.count - 1)
-                            .tag(index)
+                        TutorialPageView(page: tutorialPages[index], isLastPage: (index + 2) == (totalPageCount - 1))
+                            .tag(index + 2)
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
@@ -116,7 +147,7 @@ struct TutorialView: View {
                     
                     Spacer()
                     
-                    if currentPage < tutorialPages.count - 1 {
+                    if currentPage < totalPageCount - 1 {
                         Button("Next") {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                                 currentPage += 1
@@ -163,46 +194,120 @@ struct TutorialPageView: View {
     let isLastPage: Bool
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                Spacer()
-                
-                Image(systemName: page.image)
-                    .font(.system(size: 70))
-                    .foregroundColor(page.color)
-                    .padding()
-                    .background(page.color.opacity(0.1))
-                    .clipShape(Circle())
-                    .scaleEffect(isLastPage ? 1.1 : 1.0)
-                    .animation(.spring(response: 0.5, dampingFraction: 0.7), value: isLastPage)
-                
-                Text(page.title)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.primary)
-                
-                Text(page.description)
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.secondary)
-                    .lineSpacing(4)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal, 40)
-                
-                // Add contact info only for the last page
-                if isLastPage {
-                    VStack() {
-                        Text("Contact the developer at linguaglass@gmail.com for bug reports or additional language support/feature requests.")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.top, 10)
-                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+        VStack(spacing: 30) {
+            Image(systemName: page.image)
+                .font(.system(size: 70))
+                .foregroundColor(page.color)
+                .padding()
+                .background(page.color.opacity(0.1))
+                .clipShape(Circle())
+                .scaleEffect(isLastPage ? 1.1 : 1.0)
+                .animation(.spring(response: 0.5, dampingFraction: 0.7), value: isLastPage)
+
+            Text(page.title)
+                .font(.title2)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.primary)
+
+            Text(page.description)
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+                .lineSpacing(4)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, 40)
+
+            if isLastPage {
+                VStack {
+                    Text("Contact the developer at linguaglass@gmail.com for bug reports or additional language support/feature requests.")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 40)
+                }
+                .padding(.top, 10)
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+
+            Spacer()
+        }
+        .padding(.vertical, 40)
+    }
+}
+
+struct AppLanguageSelectionPage: View {
+    @Binding var appLanguage: AppLanguage
+
+    var body: some View {
+        VStack(spacing: 24) {
+            Image(systemName: "character.bubble")
+                .font(.system(size: 70))
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.white.opacity(0.15))
+                .clipShape(Circle())
+
+            Text("Choose App Language")
+                .font(.title2)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+
+            Text("This sets the language used in the app's interface and translation/dictionary lookup.")
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+                .padding(.horizontal, 40)
+
+            Picker(String(localized: "App Language"), selection: $appLanguage) {
+                ForEach(AppLanguage.allCases) { lang in
+                    Text(lang.displayName).tag(lang)
                 }
             }
-            .padding(.vertical, 40)
+
+            Spacer()
         }
-        .scrollIndicators(.hidden)
+        .padding(.vertical, 40)
+    }
+}
+
+struct TargetLanguageSelectionPage: View {
+    @Binding var targetLanguage: TargetLanguage
+
+    var body: some View {
+        VStack(spacing: 24) {
+            Image(systemName: "globe")
+                .font(.system(size: 70))
+                .foregroundColor(.pink)
+                .padding()
+                .background(Color.pink.opacity(0.1))
+                .clipShape(Circle())
+
+            Text("Choose Target Language")
+                .font(.title2)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+
+            Text("This sets the language you want to read and translate/look up in dictionaries.")
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+                .padding(.horizontal, 40)
+
+            Picker(String(localized: "Target Language"), selection: $targetLanguage) {
+                ForEach(TargetLanguage.allCases) { language in
+                    Text(language.displayName).tag(language)
+                }
+            }
+
+            Text("Note: OCR for vertical scripts and tokenization for Japanese may be inaccurate.")
+                .font(.system(size: 10, weight: .light))
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
+
+            Spacer()
+        }
+        .padding(.vertical, 40)
     }
 }

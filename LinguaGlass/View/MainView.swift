@@ -65,6 +65,7 @@ struct MainView: View {
             
             if showTutorial {
                 TutorialView(isShowing: $showTutorial)
+                    .environmentObject(settingsViewModel)
                     .transition(.opacity)
                     .zIndex(1)
             }
