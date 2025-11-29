@@ -92,6 +92,17 @@ final class WebBrowserViewModel: NSObject, WebBrowserViewModelProtocol, WKUIDele
             .receive(on: DispatchQueue.main)
             .sink { [weak self] url in self?.updateSearchTextFromURL(url) }
             .store(in: &cancellables)
+        
+        // Persist URL on URL change observer
+        webView.publisher(for: \.url)
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] url in
+                self?.updateSearchTextFromURL(url)
+                self?.persistenceService.saveLastURL(url)
+            }
+            .store(in: &cancellables)
+
     }
     
     private func loadLastSession() {
