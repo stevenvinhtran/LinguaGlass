@@ -23,23 +23,25 @@ struct DictionaryWebView: View {
         let dictionaryURL: String
         switch language {
         case .japaneseVertical, .japaneseHorizontal:
-            dictionaryURL = "https://jisho.org/search/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://jisho.org/search/\(sanitizedTerm)")
         case .korean:
-            dictionaryURL = "https://korean.dict.naver.com/koendict/#/search?query=\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://korean.dict.naver.com/koendict/#/search?query=\(sanitizedTerm)")
         case .vietnamese:
-            dictionaryURL = "https://tracau.vn/?s=\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://tracau.vn/?s=\(sanitizedTerm)")
         case .spanish:
-            dictionaryURL = "https://www.spanishdict.com/translate/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://www.spanishdict.com/translate/\(sanitizedTerm)")
         case .french:
-            dictionaryURL = "https://www.frenchdictionary.com/translate/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://www.frenchdictionary.com/translate/\(sanitizedTerm)")
         case .portuguese:
-            dictionaryURL = "https://dictionary.reverso.net/portuguese-english/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://dictionary.reverso.net/portuguese-english/\(sanitizedTerm)")
         case .chineseSimplifiedHorizontal, .chineseSimplifiedVertical, .chineseTraditionalHorizontal, .chineseTraditionalVertical:
-            dictionaryURL = "https://hanzii.net/search/word/\(sanitizedTerm)?hl=en"
+            dictionaryURL = String(localized: "https://hanzii.net/search/word/\(sanitizedTerm)?hl=en")
         case .italian:
-            dictionaryURL = "https://dictionary.reverso.net/italian-english/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://dictionary.reverso.net/italian-english/\(sanitizedTerm)")
         case .romanian:
-            dictionaryURL = "https://dictionary.reverso.net/romanian-english/\(sanitizedTerm)"
+            dictionaryURL = String(localized: "https://dictionary.reverso.net/romanian-english/\(sanitizedTerm)")
+        case .english:
+            dictionaryURL = String(localized: "https://www.dictionary.com/browse/\(sanitizedTerm)")
         }
         return URL(string: dictionaryURL)
     }

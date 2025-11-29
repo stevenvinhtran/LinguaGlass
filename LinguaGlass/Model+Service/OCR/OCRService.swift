@@ -122,6 +122,10 @@ class OCRService: ImageOCR {
         case .romanian:
             request.recognitionLanguages = ["ro"]
             request.usesLanguageCorrection = true
+            
+        case .english:
+            request.recognitionLanguages = ["en"]
+            request.usesLanguageCorrection = true
         }
         
         request.usesLanguageCorrection = true

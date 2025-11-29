@@ -23,6 +23,9 @@ struct TokenizerHandler {
         case .spanish, .french, .portuguese, .italian, .romanian:
             return LatinLanguageTokenizer(language: settings.targetLanguage)
             
+        case .english:
+            return EnglishTokenizer()
+            
         case .chineseSimplifiedHorizontal, .chineseTraditionalHorizontal, .chineseSimplifiedVertical, .chineseTraditionalVertical:
             return ChineseTokenizer(language: settings.targetLanguage)
         }

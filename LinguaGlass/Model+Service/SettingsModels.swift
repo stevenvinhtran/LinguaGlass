@@ -21,6 +21,7 @@ enum TargetLanguage: String, CaseIterable, Identifiable, Codable {
     case chineseTraditionalHorizontal
     case italian
     case romanian
+    case english
     
     var id: String { rawValue }
     var displayName: String {
@@ -38,6 +39,7 @@ enum TargetLanguage: String, CaseIterable, Identifiable, Codable {
         case .chineseTraditionalHorizontal: return String(localized: "Chinese (Traditional, Horizontal)")
         case .italian: return String(localized: "Italian")
         case .romanian: return String(localized: "Romanian")
+        case .english: return String(localized: "English")
         }
     }
 }

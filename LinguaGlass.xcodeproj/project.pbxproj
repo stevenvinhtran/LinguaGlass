@@ -51,6 +51,7 @@
 		5D3AEEED2E6621DC00ED324E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEC2E6621DC00ED324E /* TutorialView.swift */; };
 		5D3AEEEF2E66220700ED324E /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AEEEE2E66220700ED324E /* TutorialManager.swift */; };
 		5D63D6F92EDABF2500685740 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D63D6F82EDABF2500685740 /* Localizable.xcstrings */; };
+		5D63D6FC2EDAC71900685740 /* EnglishTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D63D6FB2EDAC71600685740 /* EnglishTokenizer.swift */; };
 		5D6E1E3F2E63814900414F9C /* KoreanTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */; };
 		5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */; };
 		5D7460592E63ECD400D5A5FF /* LiveTextImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */; };
@@ -102,6 +103,7 @@
 		5D3AEEEE2E66220700ED324E /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		5D63D6E62EDAB7E200685740 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		5D63D6F82EDABF2500685740 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		5D63D6FB2EDAC71600685740 /* EnglishTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTokenizer.swift; sourceTree = "<group>"; };
 		5D6E1E3E2E63814900414F9C /* KoreanTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanTokenizer.swift; sourceTree = "<group>"; };
 		5D6E1E402E638CE200414F9C /* DictionaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWebView.swift; sourceTree = "<group>"; };
 		5D7460582E63ECD400D5A5FF /* LiveTextImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextImageView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				5DC70BD82E64CF5400FA99AD /* TextCleaner.swift */,
 				5D393FCD2E62831F00CB2FB1 /* TokenizerHandler.swift */,
 				5D3895B22ED60A630033D546 /* RubyText.swift */,
+				5D63D6FA2EDAC70800685740 /* EnglishTokenizer */,
 				5D3895AA2ED4F0410033D546 /* ChineseTokenizer */,
 				5D3895A72ED4EFF00033D546 /* LatinTokenizer */,
 				5D393FB22E62537200CB2FB1 /* JapaneseTokenizer */,
@@ -287,6 +290,14 @@
 				5D3AEEEE2E66220700ED324E /* TutorialManager.swift */,
 			);
 			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		5D63D6FA2EDAC70800685740 /* EnglishTokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				5D63D6FB2EDAC71600685740 /* EnglishTokenizer.swift */,
+			);
+			path = EnglishTokenizer;
 			sourceTree = "<group>";
 		};
 		5D6E1E3A2E6380B000414F9C /* KoreanTokenizer */ = {
@@ -451,6 +462,7 @@
 				5D357B4A2E5FBB6B000A59EA /* SettingsView.swift in Sources */,
 				5D357B652E5FE110000A59EA /* OCROptions.swift in Sources */,
 				5D393FC82E6273F500CB2FB1 /* TokenizerProtocol.swift in Sources */,
+				5D63D6FC2EDAC71900685740 /* EnglishTokenizer.swift in Sources */,
 				5D6E1E412E638CE200414F9C /* DictionaryWebView.swift in Sources */,
 				5D357B672E5FE195000A59EA /* OCRSelectionOverlayView.swift in Sources */,
 				5DC70BD92E64CF5400FA99AD /* TextCleaner.swift in Sources */,
