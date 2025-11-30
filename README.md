@@ -24,20 +24,32 @@ Contact the developer at linguaglass@gmail.com for bug reports or additional lan
 ## Supported Languages
 
 Currently, OCR and dictionary lookup from:
-- Japanese
-- Korean
-- Vietnamese
-- Spanish
-- French
-- Portuguese
-- Italian
-- Romanian
-- Chinese (Simplified)
-- Chinese (Traditional)
+- 🇺🇸 English
+- 🇯🇵 日本語
+- 🇰🇷 한국어
+- 🇻🇳 Tiếng Việt
+- 🇲🇽 Español
+- 🇫🇷 Français
+- 🇧🇷 Português
+- 🇨🇳 中文（简体）
+- 🇹🇼 中文（繁體）
+- 🇮🇹 Italiano
+- 🇷🇴 Română
+- 🌐 Other 
 
 to:
 
-- English
+- 🇺🇸 English
+- 🇯🇵 日本語
+- 🇰🇷 한국어
+- 🇻🇳 Tiếng Việt
+- 🇲🇽 Español
+- 🇫🇷 Français
+- 🇧🇷 Português
+- 🇨🇳 中文（简体）
+- 🇹🇼 中文（繁體）
+- 🇮🇹 Italiano
+- 🇷🇴 Română
 
 is supported.
 
