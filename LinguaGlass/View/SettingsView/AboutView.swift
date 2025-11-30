@@ -21,7 +21,7 @@ struct AboutView: View {
                 Spacer().frame(height: 10)
                 Text("LinguaGlass")
                     .font(.system(size: 15))
-                Text("(1.0.0)")
+                Text("(2.0.0)")
                     .font(.system(size: 15))
             }
             .padding()
