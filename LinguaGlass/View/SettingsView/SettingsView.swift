@@ -166,7 +166,6 @@ struct SettingsView: View {
                     }
                 }
                 
-                
                 Text("Contact the developer at linguaglass@gmail.com for bug reports or additional language support/feature requests.")
                     .font(.footnote)
                     .foregroundColor(.secondary)
@@ -180,6 +179,8 @@ struct SettingsView: View {
                 }
             )
         }
+        .environment(\.locale, Locale(identifier: viewModel.settings.appLanguage.localeIdentifier))
+        .preferredColorScheme(viewModel.getColorScheme())
     }
 }
 
