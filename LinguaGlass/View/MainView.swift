@@ -72,8 +72,11 @@ struct MainView: View {
         }
         .environment(\.locale, Locale(identifier: settingsViewModel.settings.appLanguage.localeIdentifier))
         .onAppear {
-            showTutorial = TutorialManager.shared.shouldShowTutorial
+            // Force everybody to see v2 once
+            let hasSeen = UserDefaults.standard.bool(forKey: "hasSeenTutorial_v2")
+            showTutorial = !hasSeen
         }
+
         .onChange(of: webViewModel.state.isLoading, initial: false) { _, isLoading in
             showProgress = isLoading
         }

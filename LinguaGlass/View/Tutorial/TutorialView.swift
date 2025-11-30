@@ -163,7 +163,7 @@ struct TutorialView: View {
                         Button("Get Started") {
                             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                                 isShowing = false
-                                UserDefaults.standard.set(true, forKey: "hasSeenTutorial")
+                                UserDefaults.standard.set(true, forKey: "hasSeenTutorial_v2")
                             }
                         }
                         .font(.system(size: 18, weight: .semibold))

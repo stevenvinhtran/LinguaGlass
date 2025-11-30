@@ -426,6 +426,7 @@
 				it,
 				fr,
 				ro,
+				"pt-BR",
 			);
 			mainGroup = 5D357B092E5F575B000A59EA;
 			packageReferences = (
