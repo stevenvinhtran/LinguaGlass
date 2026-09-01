@@ -87,7 +87,7 @@ struct TutorialView: View {
                     ForEach(0..<totalPageCount, id: \.self) { index in
                         let color: Color = {
                             switch index {
-                            case 0: return .white // App Language page dot
+                            case 0: return .gray // App Language page dot
                             case 1: return .pink  // Target Language page dot
                             default: return tutorialPages[index - 2].color
                             }
